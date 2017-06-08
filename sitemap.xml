@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.520zhang.com/2017/06/08/hello-world/</loc>
+    
+    <lastmod>2017-06-08T16:10:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.520zhang.com/categories/index.html</loc>
     
     <lastmod>2017-06-08T14:03:49.000Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://www.520zhang.com/2017/06/08/hello-world-1/</loc>
     
     <lastmod>2017-06-08T13:48:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.520zhang.com/2017/06/08/hello-world/</loc>
-    
-    <lastmod>2017-06-08T13:45:27.000Z</lastmod>
     
   </url>
   
