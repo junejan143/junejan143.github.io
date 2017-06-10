@@ -56,17 +56,35 @@
   
 
   
+    
+      
+    
 
-  
-
+    
   
 
   
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Neucha:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -81,7 +99,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="工具," />
+  <meta name="keywords" content="git," />
 
 
 
@@ -97,17 +115,17 @@
 
 
 
-<meta name="description" content="push设置无需每次输入密码http连接方式 方法一 1git config --global credential.helper wincred  方法二 1234567891011http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git``` &amp;gt;username: 远程代码块的登录账号password：远程代码块的">
-<meta name="keywords" content="工具">
+<meta name="description" content="push设置无需每次输入密码http连接方式 方法一git config --global credential.helper wincred   方法二http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git username: 远程代码块的登录账号password：远程代码块的登录密码@后面的内容及为远程代码块    s">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git常见操作及设置">
 <meta property="og:url" content="http://www.520zhang.com/2017/06/11/git常见操作及设置/index.html">
 <meta property="og:site_name" content="幻影">
-<meta property="og:description" content="push设置无需每次输入密码http连接方式 方法一 1git config --global credential.helper wincred  方法二 1234567891011http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git``` &amp;gt;username: 远程代码块的登录账号password：远程代码块的">
-<meta property="og:updated_time" content="2017-06-10T17:54:59.000Z">
+<meta property="og:description" content="push设置无需每次输入密码http连接方式 方法一git config --global credential.helper wincred   方法二http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git username: 远程代码块的登录账号password：远程代码块的登录密码@后面的内容及为远程代码块    s">
+<meta property="og:updated_time" content="2017-06-10T18:09:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git常见操作及设置">
-<meta name="twitter:description" content="push设置无需每次输入密码http连接方式 方法一 1git config --global credential.helper wincred  方法二 1234567891011http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git``` &amp;gt;username: 远程代码块的登录账号password：远程代码块的">
+<meta name="twitter:description" content="push设置无需每次输入密码http连接方式 方法一git config --global credential.helper wincred   方法二http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git username: 远程代码块的登录账号password：远程代码块的登录密码@后面的内容及为远程代码块    s">
 
 
 
@@ -343,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
                   </a>
                 </span>
 
@@ -389,20 +407,29 @@
 
       
         <h3 id="push设置无需每次输入密码"><a href="#push设置无需每次输入密码" class="headerlink" title="push设置无需每次输入密码"></a>push设置无需每次输入密码</h3><h4 id="http连接方式"><a href="#http连接方式" class="headerlink" title="http连接方式"></a>http连接方式</h4><ul>
-<li><p>方法一</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git<span class="built_in"> config </span>--global credential.helper wincred</div></pre></td></tr></table></figure>
-</li>
-<li><p>方法二</p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">http:<span class="comment">//[username]:[password]@zychen.com.cn/scm/nec/nec-server.git</span></div><div class="line">``` </div><div class="line">&gt;username: 远程代码块的登录账号</div><div class="line">password：远程代码块的登录密码</div><div class="line">@后面的内容及为远程代码块</div><div class="line"></div><div class="line">#### ssh连接方式</div><div class="line"></div><div class="line">[传送门](https:<span class="comment">//help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac)</span></div><div class="line"></div><div class="line">### 基本配置</div></pre></td></tr></table></figure>
+<li>方法一<br><code>git config --global credential.helper wincred</code></li>
+</ul>
+<ul>
+<li>方法二<br><code>http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git</code><blockquote>
+<p>username: 远程代码块的登录账号<br>password：远程代码块的登录密码<br>@后面的内容及为远程代码块</p>
+</blockquote>
 </li>
 </ul>
-<h1 id="配置用户信息"><a href="#配置用户信息" class="headerlink" title="配置用户信息"></a>配置用户信息</h1><p>git config –global user.name stash &lt;用户名&gt;<br>git config –global user.email &lt;公司邮箱&gt; </p>
-<h1 id="关闭自动crlf转换，开启crlf检查"><a href="#关闭自动crlf转换，开启crlf检查" class="headerlink" title="关闭自动crlf转换，开启crlf检查"></a>关闭自动crlf转换，开启crlf检查</h1><p>git config –global core.autocrlf false<br>git config –global core.safecrlf true</p>
-<h1 id="给命令设置别名"><a href="#给命令设置别名" class="headerlink" title="给命令设置别名"></a>给命令设置别名</h1><p>git config –global alias.st status<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 常用操作</div><div class="line">* 删除远程仓库的分支</div></pre></td></tr></table></figure></p>
-<p>git push origin :远程分支名<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>修剪远程中已经删除的分支，但在本地还存在的</div></pre></td></tr></table></figure></p>
-<p>git remote prune origin<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>回退本地commit的历史</div></pre></td></tr></table></figure></p>
-<p>git reset HEAD^^<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>将别的分支的commit的历史复制到当前分支</div></pre></td></tr></table></figure></p>
-<p>git cherry pick -提交的commit号<br>```</p>
+<h4 id="ssh连接方式"><a href="#ssh连接方式" class="headerlink" title="ssh连接方式"></a>ssh连接方式</h4><p><a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac" target="_blank" rel="external">传送门</a></p>
+<h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 配置用户信息</span></div><div class="line">git<span class="built_in"> config </span>--global user.name stash &lt;用户名&gt;</div><div class="line">git<span class="built_in"> config </span>--global user.email &lt;公司邮箱&gt; </div><div class="line"></div><div class="line"><span class="comment"># 关闭自动crlf转换，开启crlf检查</span></div><div class="line">git<span class="built_in"> config </span>--global core.autocrlf <span class="literal">false</span></div><div class="line">git<span class="built_in"> config </span>--global core.safecrlf <span class="literal">true</span></div><div class="line"></div><div class="line"><span class="comment"># 给命令设置别名</span></div><div class="line">git<span class="built_in"> config </span>--global alias.st status</div></pre></td></tr></table></figure>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ul>
+<li><p>删除远程仓库的分支</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> :远程分支名</div></pre></td></tr></table></figure>
+</li>
+<li><p>修剪远程中已经删除的分支，但在本地还存在的</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">git remote prune origin</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>回退本地commit的历史</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">reset</span> <span class="keyword">HEAD</span>^^</div></pre></td></tr></table></figure>
+</li>
+<li><p>将别的分支的commit的历史复制到当前分支</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">git</span> cherry pick -提交的commit号</div></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -453,7 +480,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/工具/" rel="tag"># 工具</a>
+            <a href="/tags/git/" rel="tag"># git</a>
           
         </div>
       
@@ -466,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/09/jacoco统计远程服务器代码覆盖率/" rel="next" title="jacoco统计远程服务器代码覆盖率">
-                <i class="fa fa-chevron-left"></i> jacoco统计远程服务器代码覆盖率
+              <a href="/2017/06/10/selenide的入门教程/" rel="next" title="selenide的入门教程">
+                <i class="fa fa-chevron-left"></i> selenide的入门教程
               </a>
             
           </div>
@@ -550,7 +577,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -561,7 +588,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -572,7 +599,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -641,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#push设置无需每次输入密码"><span class="nav-number">1.</span> <span class="nav-text">push设置无需每次输入密码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http连接方式"><span class="nav-number">1.1.</span> <span class="nav-text">http连接方式</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置用户信息"><span class="nav-number"></span> <span class="nav-text">配置用户信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关闭自动crlf转换，开启crlf检查"><span class="nav-number"></span> <span class="nav-text">关闭自动crlf转换，开启crlf检查</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#给命令设置别名"><span class="nav-number"></span> <span class="nav-text">给命令设置别名</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#push设置无需每次输入密码"><span class="nav-number">1.</span> <span class="nav-text">push设置无需每次输入密码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http连接方式"><span class="nav-number">1.1.</span> <span class="nav-text">http连接方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh连接方式"><span class="nav-number">1.2.</span> <span class="nav-text">ssh连接方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本配置"><span class="nav-number">2.</span> <span class="nav-text">基本配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">3.</span> <span class="nav-text">常用操作</span></a></li></ol></div>
             
 
           </div>
