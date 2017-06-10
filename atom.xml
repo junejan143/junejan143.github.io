@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-06-10T18:22:01.000Z</updated>
+  <updated>2017-06-10T18:32:30.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -14,6 +14,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CountDownLatch、ExecutorService的使用</title>
+    <link href="http://www.520zhang.com/2017/06/11/CountDownLatch%E3%80%81ExecutorService%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.520zhang.com/2017/06/11/CountDownLatch、ExecutorService的使用/</id>
+    <published>2017-06-10T18:31:50.000Z</published>
+    <updated>2017-06-10T18:32:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> <span class="type">CountDownLatch</span>(<span class="number">50</span>);</div><div class="line">        <span class="comment">//开启一个线程池</span></div><div class="line">        ExecutorService executor = Executors.<span class="keyword">new</span><span class="type">CachedThreadPool</span>();</div><div class="line">        <span class="comment">//执行TestThread里面的run方法</span></div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        <span class="comment">//线程池不再接受新的任务</span></div><div class="line">        executor.shutdown();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>executor.execute(new TestThread(countDownLatch));</code>这段传入的是一个实现<code>Runnable</code>接口的类，执行的方法则是<code>run</code>方法里面的内容，每一个<code>execute</code>则是开启一个线程</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</div><div class="line">    <span class="keyword">private</span>  CountDownLatch countDownLatch;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TestThread</span><span class="params">( CountDownLatch countDownLatch )</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.countDownLatch = countDownLatch;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (countDownLatch.getCount() &gt;<span class="number">0</span>)&#123;</div><div class="line">            countDownLatch.countDown();</div><div class="line">            System.out.println(<span class="string">"输出："</span>+Thread.currentThread()+<span class="string">"&gt;&gt;&gt;"</span>+ countDownLatch.getCount());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>CountDownLatch countDownLatch = new CountDownLatch(50);</code>这段是启用一个线程辅助类，传入的参数是一个<code>int</code>类型的计数，在<code>TestThread</code>中的<code>run</code>方法中，每执行一次，通过调用<code>countDownLatch.countDown();</code>方法计数减一，当计数内容为<code>0</code>时，则子线程全部执行完成，此时主线程才能继续往下执行。</li>
+</ul>
+<h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">49</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">47</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">46</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">45</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">44</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">43</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">42</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">41</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">40</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-2</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">48</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">39</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-2</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">38</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-3</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">36</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">36</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-3</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">34</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>具体用法请google</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight haxe&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.520zhang.com/categories/Java/"/>
+    
+    
+      <category term="多线程" scheme="http://www.520zhang.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>windows，mac 更新npm包管理器</title>
+    <link href="http://www.520zhang.com/2017/06/11/windows%EF%BC%8Cmac-%E6%9B%B4%E6%96%B0npm%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/"/>
+    <id>http://www.520zhang.com/2017/06/11/windows，mac-更新npm包管理器/</id>
+    <published>2017-06-10T18:29:32.000Z</published>
+    <updated>2017-06-10T18:30:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="在-nix（OSX，Linux等）上升级"><a href="#在-nix（OSX，Linux等）上升级" class="headerlink" title="在* nix（OSX，Linux等）上升级"></a>在* nix（OSX，Linux等）上升级</h3><blockquote>
+<p>您可能需要使用<code>sudo</code>前缀这些命令，尤其是在Linux或OS X上，如果您使用其默认安装程序安装了<code>Node</code>。</p>
+</blockquote>
+<p>您可以使用以下方式升级到最新版本的npm：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>@latest</div></pre></td></tr></table></figure></p>
+<p>或升级到最新的LTS版本：<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>@lts</div></pre></td></tr></table></figure></p>
+<h3 id="在Windows上升级"><a href="#在Windows上升级" class="headerlink" title="在Windows上升级"></a>在Windows上升级</h3><p>你可以<a href="https://github.com/felixrieseberg/npm-windows-upgrade" target="_blank" rel="external">你可以从这里下载</a>或者跟着如下手册概述操作</p>
+<p>默认情况下，<code>npm</code>和nodejs一起安装在<code>C:\Program Files (x86)\nodejs</code>。<br>npm的默认安装包（包括潜在的npm本身）分别存储在用户特定的目录中，这是目录（<code>C:\Users\&lt;username&gt;\AppData\Roaming\npm</code>），因为安装程序在<code>PATH</code>中将<code>C:\Program Files (x86)\nodejs</code>放在<code>C:\Users\&lt;username&gt;\AppData\Roaming\npm</code>之前，它将始终使用安装了<code>nodejs</code>的<code>npm</code>版本，而不是你使用<code>npm -g install npm@&lt;version&gt;</code>安装的<code>npm</code>版本，要解决这个问题，您可以执行以下操作之一</p>
+<ul>
+<li><p>选项1：编辑Windows环境变量的PATH路径，将<code>％appdata％\ npm</code>放在<code>％ProgramFiles％\ nodejs</code>之前。</p>
+<blockquote>
+<p>请记住，当您对<code>PATH</code>进行更改或如何安装<code>npm</code>时，需要重新启动<code>cmd.exe</code>（并可能重新启动Windows）。</p>
+</blockquote>
+</li>
+<li><p>选项2：删除两者</p>
+<ol>
+<li><code>%ProgramFiles%\nodejs\npm</code></li>
+<li><code>%ProgramFiles%\nodejs\npm.cmd</code></li>
+</ol>
+</li>
+<li><p>选项3：导航到<code>％ProgramFiles％\ nodejs \ node_modules \ npm</code>并将<code>npmrcfile</code>复制到另一个文件夹或桌面。<br>然后打开cmd.exe并运行以下命令：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd %ProgramFiles%<span class="string">\nodejs</span></div><div class="line"><span class="built_in">npm</span> install <span class="built_in">npm</span>@latest</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="如果在node-js安装程序中安装了npm，执行上述步骤之一后，执行以下操作。"><a href="#如果在node-js安装程序中安装了npm，执行上述步骤之一后，执行以下操作。" class="headerlink" title="如果在node.js安装程序中安装了npm，执行上述步骤之一后，执行以下操作。"></a>如果在<code>node.js</code>安装程序中安装了<code>npm</code>，执行上述步骤之一后，执行以下操作。</h6><ul>
+<li>选项1或2<br>进入<code>％ProgramFiles％\ nodejs \ node_modules \ npm</code>，并在新的<code>npm</code>文件夹中复制名为<code>npmrc</code>的文件，该文件夹应为<code>％appdata％\ npm \ node_modules \ npm</code>。这将告诉新的<code>npm</code>全局安装的软件包。</li>
+<li>选项3<br>将<code>npmrc</code>文件复制回<code>％ProgramFiles％\ nodejs \ node_modules \ npm</code><blockquote>
+<p>（如果您运行的是Windows 7，并且没有％appdata％\ npm目录，请参阅下面的内容）</p>
+</blockquote>
+</li>
+</ul>
+<p>运行以下命令查看npm将安装全局包以验证其是否正确<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm<span class="built_in"> config </span><span class="builtin-name">get</span><span class="built_in"> prefix </span>-g</div></pre></td></tr></table></figure></p>
+<p>如果未设置为<code>&lt;X&gt;:\Users\&lt;user&gt;\AppData\Roaming\npm</code>，则可以运行以下命令来更正它：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm<span class="built_in"> config </span><span class="builtin-name">set</span><span class="built_in"> prefix </span><span class="string">"<span class="variable">$&#123;APPDATA&#125;</span>/npm"</span> -g</div></pre></td></tr></table></figure></p>
+<p>顺便提一句，如果你希望这个软件包不被安装到你的漫游配置文件中（因为你的共享网络上有一个配额，或是使域名登录或者退出一个域名），你可以把它放在你本地的应用数据中：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm<span class="built_in"> config </span><span class="builtin-name">set</span><span class="built_in"> prefix </span><span class="string">"<span class="variable">$&#123;LOCALAPPDATA&#125;</span>/npm"</span> -g</div></pre></td></tr></table></figure></p>
+<p>…以及将<code>%APPDATA%\npm</code>复制到<code>%LOCALAPPDATA%\npm</code>（当然更新您的％PATH％）。</p>
+<h3 id="尝试清除npm缓存"><a href="#尝试清除npm缓存" class="headerlink" title="尝试清除npm缓存"></a>尝试清除npm缓存</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span> cache clean</div></pre></td></tr></table></figure>
+<p>原文链接：<a href="https://github.com/npm/npm/wiki/Troubleshooting#a-brief-note-on-the-built-in-windows-configuration" target="_blank" rel="external">https://github.com/npm/npm/wiki/Troubleshooting#a-brief-note-on-the-built-in-windows-configuration</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;在-nix（OSX，Linux等）上升级&quot;&gt;&lt;a href=&quot;#在-nix（OSX，Linux等）上升级&quot; class=&quot;headerlink&quot; title=&quot;在* nix（OSX，Linux等）上升级&quot;&gt;&lt;/a&gt;在* nix（OSX，Linux等）上升级&lt;/h3
+    
+    </summary>
+    
+      <category term="nodejs" scheme="http://www.520zhang.com/categories/nodejs/"/>
+    
+    
+      <category term="npm" scheme="http://www.520zhang.com/tags/npm/"/>
+    
+  </entry>
   
   <entry>
     <title>testng集成allure测试报告</title>
@@ -253,9 +343,9 @@
       <category term="性能测试" scheme="http://www.520zhang.com/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="locust" scheme="http://www.520zhang.com/tags/locust/"/>
-    
       <category term="Test" scheme="http://www.520zhang.com/tags/Test/"/>
+    
+      <category term="locust" scheme="http://www.520zhang.com/tags/locust/"/>
     
   </entry>
   
