@@ -4,11 +4,23 @@
     <title><![CDATA[jenkins笔记]]></title>
     <url>%2F2017%2F06%2F11%2Fjenkins%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[启动Jenkins1java -jar jenkins.war --httpPort=8001 遇到的问题 查看jenkins的HTML文件，然后样式，或者引用的字体加载不出来 Refused to load the font ‘http://localhost:8080/job/nec-server-test/extent-report/extentreports/css/fonts/Roboto-Thin.woff‘ because it violates the following Content Security Policy directive: “default-src ‘none’”. Note that ‘font-src’ was not explicitly set, so ‘default-src’ is used as a fallback. 出现这种问题的情况是jenkins默认使用严格的加载模式，不允许外部的一些js操作导致的，需要将一些规则放宽参考：https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy 解决办法：在启动jenkins的时候 使用java -Dhudson.model.DirectoryBrowserSupport.CSP= -jar jenkins.war代替java -jar jenkins.war]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>jenkins</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[git常见操作及设置]]></title>
     <url>%2F2017%2F06%2F11%2Fgit%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E5%8F%8A%E8%AE%BE%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[push设置无需每次输入密码http连接方式 方法一 1git config --global credential.helper wincred 方法二 1234567891011http://[username]:[password]@zychen.com.cn/scm/nec/nec-server.git``` &gt;username: 远程代码块的登录账号password：远程代码块的登录密码@后面的内容及为远程代码块#### ssh连接方式[传送门](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac)### 基本配置 配置用户信息git config –global user.name stash &lt;用户名&gt;git config –global user.email &lt;公司邮箱&gt; 关闭自动crlf转换，开启crlf检查git config –global core.autocrlf falsegit config –global core.safecrlf true 给命令设置别名git config –global alias.st status123### 常用操作* 删除远程仓库的分支 git push origin :远程分支名1* 修剪远程中已经删除的分支，但在本地还存在的 git remote prune origin1* 回退本地commit的历史 git reset HEAD^^1* 将别的分支的commit的历史复制到当前分支 git cherry pick -提交的commit号```]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[jacoco统计远程服务器代码覆盖率]]></title>

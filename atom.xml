@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-06-10T17:50:05.000Z</updated>
+  <updated>2017-06-10T17:54:31.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.520zhang.com/2017/06/11/jenkins%E7%AC%94%E8%AE%B0/"/>
     <id>http://www.520zhang.com/2017/06/11/jenkins笔记/</id>
     <published>2017-06-10T17:43:07.000Z</published>
-    <updated>2017-06-10T17:50:05.000Z</updated>
+    <updated>2017-06-10T17:54:31.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="启动Jenkins"><a href="#启动Jenkins" class="headerlink" title="启动Jenkins"></a>启动Jenkins</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">java </span>-<span class="keyword">jar </span><span class="keyword">jenkins.war </span> --httpPort=<span class="number">8001</span></div></pre></td></tr></table></figure>
 <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ul>
@@ -41,6 +41,10 @@
     
     </summary>
     
+      <category term="运维" scheme="http://www.520zhang.com/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="jenkins" scheme="http://www.520zhang.com/tags/jenkins/"/>
     
   </entry>
   
@@ -49,7 +53,7 @@
     <link href="http://www.520zhang.com/2017/06/11/git%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E5%8F%8A%E8%AE%BE%E7%BD%AE/"/>
     <id>http://www.520zhang.com/2017/06/11/git常见操作及设置/</id>
     <published>2017-06-10T17:12:12.000Z</published>
-    <updated>2017-06-10T17:40:27.000Z</updated>
+    <updated>2017-06-10T17:54:59.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="push设置无需每次输入密码"><a href="#push设置无需每次输入密码" class="headerlink" title="push设置无需每次输入密码"></a>push设置无需每次输入密码</h3><h4 id="http连接方式"><a href="#http连接方式" class="headerlink" title="http连接方式"></a>http连接方式</h4><ul>
 <li><p>方法一</p>
@@ -74,6 +78,10 @@
     
     </summary>
     
+      <category term="git" scheme="http://www.520zhang.com/categories/git/"/>
+    
+    
+      <category term="工具" scheme="http://www.520zhang.com/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
