@@ -291,6 +291,276 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.520zhang.com/2017/06/11/jenkins笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zychen.zyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/11/jenkins笔记/" itemprop="url">jenkins笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T01:43:07+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/11/jenkins笔记/" class="leancloud_visitors" data-flag-title="jenkins笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="启动Jenkins"><a href="#启动Jenkins" class="headerlink" title="启动Jenkins"></a>启动Jenkins</h3><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">java </span>-<span class="keyword">jar </span><span class="keyword">jenkins.war </span> --httpPort=<span class="number">8001</span></div></pre></td></tr></table></figure>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ul>
+<li>查看jenkins的HTML文件，然后样式，或者引用的字体加载不出来<blockquote>
+<p>Refused to load the font ‘<a href="http://localhost:8080/job/nec-server-test/extent-report/extentreports/css/fonts/Roboto-Thin.woff" target="_blank" rel="external">http://localhost:8080/job/nec-server-test/extent-report/extentreports/css/fonts/Roboto-Thin.woff</a>‘ because it violates the following Content Security Policy directive: “default-src ‘none’”. Note that ‘font-src’ was not explicitly set, so ‘default-src’ is used as a fallback.</p>
+</blockquote>
+</li>
+</ul>
+<p>出现这种问题的情况是jenkins默认使用严格的加载模式，不允许外部的一些js操作导致的，需要将一些规则放宽<br>参考：<a href="https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy" target="_blank" rel="external">https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy</a></p>
+<blockquote>
+<p>解决办法：在启动jenkins的时候<br>  使用<br><code>java -Dhudson.model.DirectoryBrowserSupport.CSP= -jar jenkins.war</code><br>代替<br><code>java -jar jenkins.war</code></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.520zhang.com/2017/06/11/git常见操作及设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zychen.zyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/11/git常见操作及设置/" itemprop="url">git常见操作及设置</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T01:12:12+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/11/git常见操作及设置/" class="leancloud_visitors" data-flag-title="git常见操作及设置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="push设置无需每次输入密码"><a href="#push设置无需每次输入密码" class="headerlink" title="push设置无需每次输入密码"></a>push设置无需每次输入密码</h3><h4 id="http连接方式"><a href="#http连接方式" class="headerlink" title="http连接方式"></a>http连接方式</h4><ul>
+<li><p>方法一</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git<span class="built_in"> config </span>--global credential.helper wincred</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法二</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">http:<span class="comment">//[username]:[password]@zychen.com.cn/scm/nec/nec-server.git</span></div><div class="line">``` </div><div class="line">&gt;username: 远程代码块的登录账号</div><div class="line">password：远程代码块的登录密码</div><div class="line">@后面的内容及为远程代码块</div><div class="line"></div><div class="line">#### ssh连接方式</div><div class="line"></div><div class="line">[传送门](https:<span class="comment">//help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-mac)</span></div><div class="line"></div><div class="line">### 基本配置</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="配置用户信息"><a href="#配置用户信息" class="headerlink" title="配置用户信息"></a>配置用户信息</h1><p>git config –global user.name stash &lt;用户名&gt;<br>git config –global user.email &lt;公司邮箱&gt; </p>
+<h1 id="关闭自动crlf转换，开启crlf检查"><a href="#关闭自动crlf转换，开启crlf检查" class="headerlink" title="关闭自动crlf转换，开启crlf检查"></a>关闭自动crlf转换，开启crlf检查</h1><p>git config –global core.autocrlf false<br>git config –global core.safecrlf true</p>
+<h1 id="给命令设置别名"><a href="#给命令设置别名" class="headerlink" title="给命令设置别名"></a>给命令设置别名</h1><p>git config –global alias.st status<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 常用操作</div><div class="line">* 删除远程仓库的分支</div></pre></td></tr></table></figure></p>
+<p>git push origin :远程分支名<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>修剪远程中已经删除的分支，但在本地还存在的</div></pre></td></tr></table></figure></p>
+<p>git remote prune origin<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>回退本地commit的历史</div></pre></td></tr></table></figure></p>
+<p>git reset HEAD^^<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>将别的分支的commit的历史复制到当前分支</div></pre></td></tr></table></figure></p>
+<p>git cherry pick -提交的commit号<br>```</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://www.520zhang.com/2017/06/09/jacoco统计远程服务器代码覆盖率/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -696,7 +966,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -965,7 +1235,7 @@
 
   
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("EvkfWsNhHpvaJoPcfbySfHBE-gzGzoHsz", "rdKbzY6sfWUKilpC2fwyj6Ub>");</script>
+  <script>AV.initialize("EvkfWsNhHpvaJoPcfbySfHBE-gzGzoHsz", "rdKbzY6sfWUKilpC2fwyj6Ub");</script>
   <script>
     function showTime(Counter) {
       var query = new AV.Query(Counter);
