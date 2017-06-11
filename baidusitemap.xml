@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/11/CountDownLatch%E3%80%81ExecutorService%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-06-10T18:32:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>CountDownLatch、ExecutorService的使用</title>
+        <pubTime>2017-06-10T18:31:50.000Z</pubTime>
+        
+        <tag>多线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.520zhang.com/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/11/windows%EF%BC%8Cmac-%E6%9B%B4%E6%96%B0npm%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</loc>
+    <lastmod>2017-06-10T18:30:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>windows，mac 更新npm包管理器</title>
+        <pubTime>2017-06-10T18:29:32.000Z</pubTime>
+        
+        <tag>npm</tag>
+         
+         
+           
+             
+              <breadCrumb title="nodejs" url="http://www.520zhang.com/categories/nodejs/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/11/selenium-grid%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-06-10T18:22:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>selenium grid的使用</title>
+        <pubTime>2017-06-10T18:17:48.000Z</pubTime>
+        
+        <tag>selenium</tag>
+         
+         
+           
+             
+              <breadCrumb title="自动化测试" url="http://www.520zhang.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/11/testng%E9%9B%86%E6%88%90allure%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</loc>
+    <lastmod>2017-06-10T18:22:01.000Z</lastmod>
+    <data>
+        <display>
+        <title>testng集成allure测试报告</title>
+        <pubTime>2017-06-10T18:19:19.000Z</pubTime>
+        
+        <tag>jenkins</tag>
+         
+        <tag>测试报告</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具" url="http://www.520zhang.com/categories/%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/11/locust%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-06-10T18:16:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>locust的使用</title>
+        <pubTime>2017-06-10T18:13:47.000Z</pubTime>
+        
+        <tag>Test</tag>
+         
+        <tag>locust</tag>
+         
+         
+           
+             
+              <breadCrumb title="性能测试" url="http://www.520zhang.com/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/10/selenide%E7%9A%84%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2017-06-10T18:10:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>selenide的入门教程</title>
+        <pubTime>2017-06-10T02:23:09.000Z</pubTime>
+        
+        <tag>Test</tag>
+         
+        <tag>selenide</tag>
+         
+         
+           
+             
+              <breadCrumb title="自动化测试" url="http://www.520zhang.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/09/jacoco%E7%BB%9F%E8%AE%A1%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E7%8E%87/</loc>
+    <lastmod>2017-06-10T18:09:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>jacoco统计远程服务器代码覆盖率</title>
+        <pubTime>2017-06-09T15:15:17.000Z</pubTime>
+        
+        <tag>Test</tag>
+         
+        <tag>jacoco</tag>
+         
+         
+           
+             
+              <breadCrumb title="自动化测试" url="http://www.520zhang.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/11/git%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E5%8F%8A%E8%AE%BE%E7%BD%AE/</loc>
+    <lastmod>2017-06-10T18:09:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>git常见操作及设置</title>
+        <pubTime>2017-06-10T17:12:12.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具" url="http://www.520zhang.com/categories/%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/06/11/jenkins%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-06-10T17:54:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>jenkins笔记</title>
+        <pubTime>2017-06-10T17:43:07.000Z</pubTime>
+        
+        <tag>jenkins</tag>
+         
+         
+           
+             
+              <breadCrumb title="运维" url="http://www.520zhang.com/categories/%E8%BF%90%E7%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+</urlset>
