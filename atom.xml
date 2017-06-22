@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-06-10T18:32:30.000Z</updated>
+  <updated>2017-06-22T14:04:12.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计一套具备LRU过期策略的缓存程序</title>
+    <link href="http://www.520zhang.com/2017/06/22/%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%A5%97%E5%85%B7%E5%A4%87LRU%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E7%9A%84%E7%BC%93%E5%AD%98%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://www.520zhang.com/2017/06/22/设计一套具备LRU过期策略的缓存程序/</id>
+    <published>2017-06-22T14:02:11.000Z</published>
+    <updated>2017-06-22T14:04:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="考察点"><a href="#考察点" class="headerlink" title="考察点:"></a>考察点:</h4><ul>
+<li>缓存容器的设计：LinkedHashMap的使用</li>
+<li>缓存容器并发考虑</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by zhangyuanchen on 2017/6/22.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> class LruTest&lt;K, V&gt; &#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="built_in">int</span> cacheSize;</div><div class="line">    <span class="keyword">private</span> LinkedHashMap&lt;K, V&gt; <span class="built_in">map</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">float</span> loadFactor = <span class="number">0.75</span>f;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * @param cacheSize 缓存大小</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> LruTest(<span class="built_in">int</span> cacheSize) &#123;</div><div class="line">        <span class="keyword">this</span>.cacheSize = cacheSize;</div><div class="line">        <span class="built_in">int</span> initialCapacity = (<span class="built_in">int</span>) Math.<span class="built_in">ceil</span>(cacheSize / loadFactor) + <span class="number">1</span>;</div><div class="line">        <span class="built_in">map</span> = <span class="keyword">new</span> LinkedHashMap&lt;K, V&gt;(initialCapacity, loadFactor, <span class="keyword">true</span>) &#123;</div><div class="line">            @Override</div><div class="line">            <span class="keyword">protected</span> <span class="built_in">boolean</span> removeEldestEntry(Map.Entry&lt;K, V&gt; eldest) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">size</span>() &gt; LruTest.<span class="keyword">this</span>.cacheSize;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> put(K <span class="built_in">key</span>, V value) &#123;</div><div class="line">        <span class="built_in">map</span>.put(<span class="built_in">key</span>, value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> V <span class="built_in">get</span>(K <span class="built_in">key</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">map</span>.<span class="built_in">get</span>(<span class="built_in">key</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        LruTest&lt;Integer, <span class="keyword">String</span>&gt; lruTest = <span class="keyword">new</span> LruTest&lt;Integer, <span class="keyword">String</span>&gt;(<span class="number">3</span>);</div><div class="line">        lruTest.put(<span class="number">1</span>, <span class="string">"one"</span>);  <span class="comment">// 1</span></div><div class="line">        lruTest.put(<span class="number">2</span>, <span class="string">"two"</span>);  <span class="comment">// 2,1</span></div><div class="line">        lruTest.put(<span class="number">3</span>, <span class="string">"three"</span>); <span class="comment">// 3,2,1</span></div><div class="line">        lruTest.put(<span class="number">4</span>, <span class="string">"four"</span>); <span class="comment">// 4,3,2</span></div><div class="line">        lruTest.<span class="built_in">get</span>(<span class="number">3</span>); <span class="comment">// 3,4,2</span></div><div class="line">        lruTest.<span class="built_in">get</span>(<span class="number">2</span>); <span class="comment">// 2,3,4</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>LinkedHashMap</code>中<code>initialCapacity</code>初始容量，<code>loadFactor</code>扩容因子，<code>true</code>代表使用访问顺序，<code>false</code>代表使用插入顺序，一般情况下，不必指定排序模式，其迭代顺序即为默认为插入顺序</li>
+<li>重写<code>LinkedHashMap</code>中的<code>removeEldestEntry</code>方法，该方法可以提供在每次添加新条目时移除最旧条目的实现程序，默认返回<code>false</code>，即永远不能移除最旧的元素， 重写后会移出最旧的元素</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;考察点&quot;&gt;&lt;a href=&quot;#考察点&quot; class=&quot;headerlink&quot; title=&quot;考察点:&quot;&gt;&lt;/a&gt;考察点:&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;缓存容器的设计：LinkedHashMap的使用&lt;/li&gt;
+&lt;li&gt;缓存容器并发考虑&lt;/li&gt;
+&lt;/ul&gt;
+&lt;fig
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.520zhang.com/categories/Java/"/>
+    
+    
+      <category term="缓存" scheme="http://www.520zhang.com/tags/%E7%BC%93%E5%AD%98/"/>
+    
+      <category term="集合类" scheme="http://www.520zhang.com/tags/%E9%9B%86%E5%90%88%E7%B1%BB/"/>
+    
+      <category term="面试题" scheme="http://www.520zhang.com/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>CountDownLatch、ExecutorService的使用</title>

@@ -103,7 +103,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java, test, 自动化" />
+  <meta name="keywords" content="缓存,集合类,面试题," />
 
 
 
@@ -119,15 +119,17 @@
 
 
 
-<meta name="description" content="java 自动化测试 Python 前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="幻影">
-<meta property="og:url" content="http://www.520zhang.com/categories/nodejs/index.html">
+<meta name="description" content="考察点: 缓存容器的设计：LinkedHashMap的使用 缓存容器并发考虑  1234567891011121314151617181920212223242526272829303132333435363738394041424344import java.util.LinkedHashMap;import java.util.Map;/** * Created by zhangyuanche">
+<meta name="keywords" content="缓存,集合类,面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计一套具备LRU过期策略的缓存程序">
+<meta property="og:url" content="http://www.520zhang.com/2017/06/22/设计一套具备LRU过期策略的缓存程序/index.html">
 <meta property="og:site_name" content="幻影">
-<meta property="og:description" content="java 自动化测试 Python 前端">
+<meta property="og:description" content="考察点: 缓存容器的设计：LinkedHashMap的使用 缓存容器并发考虑  1234567891011121314151617181920212223242526272829303132333435363738394041424344import java.util.LinkedHashMap;import java.util.Map;/** * Created by zhangyuanche">
+<meta property="og:updated_time" content="2017-06-22T14:04:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幻影">
-<meta name="twitter:description" content="java 自动化测试 Python 前端">
+<meta name="twitter:title" content="设计一套具备LRU过期策略的缓存程序">
+<meta name="twitter:description" content="考察点: 缓存容器的设计：LinkedHashMap的使用 缓存容器并发考虑  1234567891011121314151617181920212223242526272829303132333435363738394041424344import java.util.LinkedHashMap;import java.util.Map;/** * Created by zhangyuanche">
 
 
 
@@ -155,14 +157,14 @@
 
 
 
-  <link rel="canonical" href="http://www.520zhang.com/categories/nodejs/"/>
+  <link rel="canonical" href="http://www.520zhang.com/2017/06/22/设计一套具备LRU过期策略的缓存程序/"/>
 
 
 
 
 
 
-  <title>分类: nodejs | 幻影</title>
+  <title>设计一套具备LRU过期策略的缓存程序 | 幻影</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -198,7 +200,7 @@
     
   
 
-  <div class="container sidebar-position-right  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,45 +304,224 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>nodejs<small>分类</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/11/windows，mac-更新npm包管理器/" itemprop="url">
-              
-                <span itemprop="name">windows，mac 更新npm包管理器</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-11T02:29:32+08:00"
-              content="2017-06-11" >
-          06-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.520zhang.com/2017/06/22/设计一套具备LRU过期策略的缓存程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zychen.zyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">设计一套具备LRU过期策略的缓存程序</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T22:02:11+08:00">
+                2017-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/22/设计一套具备LRU过期策略的缓存程序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/22/设计一套具备LRU过期策略的缓存程序/" class="leancloud_visitors" data-flag-title="设计一套具备LRU过期策略的缓存程序">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="考察点"><a href="#考察点" class="headerlink" title="考察点:"></a>考察点:</h4><ul>
+<li>缓存容器的设计：LinkedHashMap的使用</li>
+<li>缓存容器并发考虑</li>
+</ul>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by zhangyuanchen on 2017/6/22.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> class LruTest&lt;K, V&gt; &#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="built_in">int</span> cacheSize;</div><div class="line">    <span class="keyword">private</span> LinkedHashMap&lt;K, V&gt; <span class="built_in">map</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">float</span> loadFactor = <span class="number">0.75</span>f;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * @param cacheSize 缓存大小</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> LruTest(<span class="built_in">int</span> cacheSize) &#123;</div><div class="line">        <span class="keyword">this</span>.cacheSize = cacheSize;</div><div class="line">        <span class="built_in">int</span> initialCapacity = (<span class="built_in">int</span>) Math.<span class="built_in">ceil</span>(cacheSize / loadFactor) + <span class="number">1</span>;</div><div class="line">        <span class="built_in">map</span> = <span class="keyword">new</span> LinkedHashMap&lt;K, V&gt;(initialCapacity, loadFactor, <span class="keyword">true</span>) &#123;</div><div class="line">            @Override</div><div class="line">            <span class="keyword">protected</span> <span class="built_in">boolean</span> removeEldestEntry(Map.Entry&lt;K, V&gt; eldest) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">size</span>() &gt; LruTest.<span class="keyword">this</span>.cacheSize;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> put(K <span class="built_in">key</span>, V value) &#123;</div><div class="line">        <span class="built_in">map</span>.put(<span class="built_in">key</span>, value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> V <span class="built_in">get</span>(K <span class="built_in">key</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">map</span>.<span class="built_in">get</span>(<span class="built_in">key</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        LruTest&lt;Integer, <span class="keyword">String</span>&gt; lruTest = <span class="keyword">new</span> LruTest&lt;Integer, <span class="keyword">String</span>&gt;(<span class="number">3</span>);</div><div class="line">        lruTest.put(<span class="number">1</span>, <span class="string">"one"</span>);  <span class="comment">// 1</span></div><div class="line">        lruTest.put(<span class="number">2</span>, <span class="string">"two"</span>);  <span class="comment">// 2,1</span></div><div class="line">        lruTest.put(<span class="number">3</span>, <span class="string">"three"</span>); <span class="comment">// 3,2,1</span></div><div class="line">        lruTest.put(<span class="number">4</span>, <span class="string">"four"</span>); <span class="comment">// 4,3,2</span></div><div class="line">        lruTest.<span class="built_in">get</span>(<span class="number">3</span>); <span class="comment">// 3,4,2</span></div><div class="line">        lruTest.<span class="built_in">get</span>(<span class="number">2</span>); <span class="comment">// 2,3,4</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>LinkedHashMap</code>中<code>initialCapacity</code>初始容量，<code>loadFactor</code>扩容因子，<code>true</code>代表使用访问顺序，<code>false</code>代表使用插入顺序，一般情况下，不必指定排序模式，其迭代顺序即为默认为插入顺序</li>
+<li>重写<code>LinkedHashMap</code>中的<code>removeEldestEntry</code>方法，该方法可以提供在每次添加新条目时移除最旧条目的实现程序，默认返回<code>false</code>，即永远不能移除最旧的元素， 重写后会移出最旧的元素</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat_pay.jpeg" alt="zychen.zyc WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/ali_pay.jpeg" alt="zychen.zyc Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/缓存/" rel="tag"># 缓存</a>
+          
+            <a href="/tags/集合类/" rel="tag"># 集合类</a>
+          
+            <a href="/tags/面试题/" rel="tag"># 面试题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/11/CountDownLatch、ExecutorService的使用/" rel="next" title="CountDownLatch、ExecutorService的使用">
+                <i class="fa fa-chevron-left"></i> CountDownLatch、ExecutorService的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -348,6 +529,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -367,8 +554,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/touxiang.jpeg"
@@ -450,6 +646,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#考察点"><span class="nav-number">1.</span> <span class="nav-text">考察点:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -583,10 +795,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
