@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo常见操作记录]]></title>
+    <url>%2F2017%2F06%2F22%2Fhexo%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[常见命令 hexo new &quot;博客&quot; 新建一个博客页面 hexo d -g 等价于先hexo generate 再 hexo deploy hexo server 启动本地服务 hexo clean 清理缓存 hexo new page about 生成about页面]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[设计一套具备LRU过期策略的缓存程序]]></title>
     <url>%2F2017%2F06%2F22%2F%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%A5%97%E5%85%B7%E5%A4%87LRU%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%E7%9A%84%E7%BC%93%E5%AD%98%E7%A8%8B%E5%BA%8F%2F</url>
     <content type="text"><![CDATA[考察点: 缓存容器的设计：LinkedHashMap的使用 缓存容器并发考虑 1234567891011121314151617181920212223242526272829303132333435363738394041424344import java.util.LinkedHashMap;import java.util.Map;/** * Created by zhangyuanchen on 2017/6/22. */public class LruTest&lt;K, V&gt; &#123; private int cacheSize; private LinkedHashMap&lt;K, V&gt; map; private static final float loadFactor = 0.75f; /** * @param cacheSize 缓存大小 */ public LruTest(int cacheSize) &#123; this.cacheSize = cacheSize; int initialCapacity = (int) Math.ceil(cacheSize / loadFactor) + 1; map = new LinkedHashMap&lt;K, V&gt;(initialCapacity, loadFactor, true) &#123; @Override protected boolean removeEldestEntry(Map.Entry&lt;K, V&gt; eldest) &#123; return size() &gt; LruTest.this.cacheSize; &#125; &#125;; &#125; public synchronized void put(K key, V value) &#123; map.put(key, value); &#125; public synchronized V get(K key) &#123; return map.get(key); &#125; public static void main(String[] args) &#123; LruTest&lt;Integer, String&gt; lruTest = new LruTest&lt;Integer, String&gt;(3); lruTest.put(1, "one"); // 1 lruTest.put(2, "two"); // 2,1 lruTest.put(3, "three"); // 3,2,1 lruTest.put(4, "four"); // 4,3,2 lruTest.get(3); // 3,4,2 lruTest.get(2); // 2,3,4 &#125;&#125; LinkedHashMap中initialCapacity初始容量，loadFactor扩容因子，true代表使用访问顺序，false代表使用插入顺序，一般情况下，不必指定排序模式，其迭代顺序即为默认为插入顺序 重写LinkedHashMap中的removeEldestEntry方法，该方法可以提供在每次添加新条目时移除最旧条目的实现程序，默认返回false，即永远不能移除最旧的元素， 重写后会移出最旧的元素]]></content>
