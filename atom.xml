@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-06-22T14:19:29.000Z</updated>
+  <updated>2017-06-23T09:53:24.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker常用操作整理</title>
+    <link href="http://www.520zhang.com/2017/06/23/docker%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86/"/>
+    <id>http://www.520zhang.com/2017/06/23/docker常用操作整理/</id>
+    <published>2017-06-23T09:23:07.000Z</published>
+    <updated>2017-06-23T09:53:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="开始一个docker化的web服务器"><a href="#开始一个docker化的web服务器" class="headerlink" title="开始一个docker化的web服务器"></a>开始一个docker化的web服务器</h3><ol>
+<li><p><code>docker run -d -p 80:80 --name webserver nginx</code><br>如果docker在局部没有找到，docker将会从远处docker hub上拉取<br>在本地浏览器中，输入<code>http://localhost:80</code>就会看到一个Nginx的欢迎页面</p>
+</li>
+<li><p><code>docker ps</code>  查看当前正在运行的容器信息</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> ~  docker ps</div><div class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES</div><div class="line">9f7d5c73d804        nginx               <span class="string">"nginx -g 'daemon ..."</span>   <span class="number">10</span> minutes ago      <span class="meta">Up</span> <span class="number">2</span> seconds        <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">80</span>-&gt;<span class="number">80</span>/tcp   webserver</div></pre></td></tr></table></figure>
+</li>
+<li><p>停止containers<br><code>docker stop webserver</code> 停止镜像的运行,如果你想重启输入如下命令<code>docker start webserver</code>，一个停止了的container将不会出现在<code>docker ps</code>命令中，你需要输入<code>docker ps -a</code>才能看见</p>
+</li>
+<li><p>删除containers或者images<br><code>docker rm -f webserver</code>这个命令将会删除container，但是不会删除Nginx的image，你可以使用命令<code>docker images</code>列出所有的镜像，你可能想保留一些镜像让你不必把他们再从Docker Hub中拉取。你可以使用<code>docker rmi</code>命令加一个镜像id，或者镜像名称来删除您不再需要的图像。<br>例如：<code>docker rmi nginx</code></p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;开始一个docker化的web服务器&quot;&gt;&lt;a href=&quot;#开始一个docker化的web服务器&quot; class=&quot;headerlink&quot; title=&quot;开始一个docker化的web服务器&quot;&gt;&lt;/a&gt;开始一个docker化的web服务器&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>hexo常见操作记录</title>
