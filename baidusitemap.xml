@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.520zhang.com/2017/06/11/testng%E9%9B%86%E6%88%90allure%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</loc>
+    <lastmod>2017-06-23T09:03:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>testng集成allure测试报告</title>
+        <pubTime>2017-06-10T18:19:19.000Z</pubTime>
+        
+        <tag>Test</tag>
+         
+        <tag>测试报告</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具" url="http://www.520zhang.com/categories/%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.520zhang.com/2017/06/22/hexo%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2017-06-22T14:19:29.000Z</lastmod>
     <data>
@@ -101,28 +123,6 @@
            
              
               <breadCrumb title="自动化测试" url="http://www.520zhang.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.520zhang.com/2017/06/11/testng%E9%9B%86%E6%88%90allure%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</loc>
-    <lastmod>2017-06-10T18:22:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>testng集成allure测试报告</title>
-        <pubTime>2017-06-10T18:19:19.000Z</pubTime>
-        
-        <tag>jenkins</tag>
-         
-        <tag>测试报告</tag>
-         
-         
-           
-             
-              <breadCrumb title="工具" url="http://www.520zhang.com/categories/%E5%B7%A5%E5%85%B7/"/>
           
         </display>
     </data>
