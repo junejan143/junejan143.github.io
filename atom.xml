@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-06-23T09:53:24.000Z</updated>
+  <updated>2017-06-23T09:55:32.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.520zhang.com/2017/06/23/docker%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86/"/>
     <id>http://www.520zhang.com/2017/06/23/docker常用操作整理/</id>
     <published>2017-06-23T09:23:07.000Z</published>
-    <updated>2017-06-23T09:53:24.000Z</updated>
+    <updated>2017-06-23T09:55:32.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="开始一个docker化的web服务器"><a href="#开始一个docker化的web服务器" class="headerlink" title="开始一个docker化的web服务器"></a>开始一个docker化的web服务器</h3><ol>
 <li><p><code>docker run -d -p 80:80 --name webserver nginx</code><br>如果docker在局部没有找到，docker将会从远处docker hub上拉取<br>在本地浏览器中，输入<code>http://localhost:80</code>就会看到一个Nginx的欢迎页面</p>
@@ -42,6 +42,12 @@
     
     </summary>
     
+      <category term="docker" scheme="http://www.520zhang.com/categories/docker/"/>
+    
+    
+      <category term="运维" scheme="http://www.520zhang.com/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="docker" scheme="http://www.520zhang.com/tags/docker/"/>
     
   </entry>
   

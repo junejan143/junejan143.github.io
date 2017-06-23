@@ -4,6 +4,13 @@
     <title><![CDATA[docker常用操作整理]]></title>
     <url>%2F2017%2F06%2F23%2Fdocker%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86%2F</url>
     <content type="text"><![CDATA[开始一个docker化的web服务器 docker run -d -p 80:80 --name webserver nginx如果docker在局部没有找到，docker将会从远处docker hub上拉取在本地浏览器中，输入http://localhost:80就会看到一个Nginx的欢迎页面 docker ps 查看当前正在运行的容器信息 123 ~  docker psCONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES9f7d5c73d804 nginx "nginx -g 'daemon ..." 10 minutes ago Up 2 seconds 0.0.0.0:80-&gt;80/tcp webserver 停止containersdocker stop webserver 停止镜像的运行,如果你想重启输入如下命令docker start webserver，一个停止了的container将不会出现在docker ps命令中，你需要输入docker ps -a才能看见 删除containers或者imagesdocker rm -f webserver这个命令将会删除container，但是不会删除Nginx的image，你可以使用命令docker images列出所有的镜像，你可能想保留一些镜像让你不必把他们再从Docker Hub中拉取。你可以使用docker rmi命令加一个镜像id，或者镜像名称来删除您不再需要的图像。例如：docker rmi nginx]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>运维</tag>
+        <tag>docker</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[hexo常见操作记录]]></title>
