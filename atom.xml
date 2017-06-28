@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-06-28T12:39:04.000Z</updated>
+  <updated>2017-06-28T12:41:17.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>自动化测试中设置https的证书信任问题</title>
+    <title>自动化测试中设置代理以及https的证书信任问题</title>
     <link href="http://www.520zhang.com/2017/06/28/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E4%BB%A5%E5%8F%8Ahttps%E7%9A%84%E8%AF%81%E4%B9%A6%E4%BF%A1%E4%BB%BB%E9%97%AE%E9%A2%98/"/>
     <id>http://www.520zhang.com/2017/06/28/自动化测试中设置代理以及https的证书信任问题/</id>
     <published>2017-06-28T11:47:41.000Z</published>
-    <updated>2017-06-28T12:39:04.000Z</updated>
+    <updated>2017-06-28T12:41:17.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>在我们的日常测试开发过程中，我们难免会遇到需要设置代理的情况，或者我们原来的http服务升级成https，那我们的自动化测试case就需要作出相应的调整，一下案例是我在实际工作中遇到的情况，以及解决方案，持续更新中</p>
 <h3 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h3><p>在使用httpclient调用https接口的时候，我们可以进行如下设置<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//设置代理</span></div><div class="line">HttpHost proxy = <span class="keyword">new</span> <span class="type">HttpHost</span>(<span class="string">"100.21.23.1"</span>,<span class="number">10001</span>);</div><div class="line"><span class="comment">//设置证书信任</span></div><div class="line">CloseableHttpClient httpClient = HttpClients.custom()</div><div class="line">        .setProxy(proxy)</div><div class="line">        .setHostnameVerifier(<span class="keyword">new</span> <span class="type">AllowAllHostnameVerifier</span>())</div><div class="line">        .setSslcontext(<span class="keyword">new</span> <span class="type">SSLContextBuilder</span>().loadTrustMaterial(<span class="literal">null</span>, <span class="keyword">new</span> <span class="type">TrustStrategy</span>()</div><div class="line">            &#123;</div><div class="line">                <span class="keyword">public</span> boolean isTrusted(X509Certificate[] arg0, <span class="keyword">String</span> arg1) throws CertificateException</div><div class="line">                &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;).build()).build();</div></pre></td></tr></table></figure></p>
