@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[自动化测试中设置https的证书信任问题]]></title>
+    <url>%2F2017%2F06%2F28%2F%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E4%BB%A5%E5%8F%8Ahttps%E7%9A%84%E8%AF%81%E4%B9%A6%E4%BF%A1%E4%BB%BB%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[简述在我们的日常测试开发过程中，我们难免会遇到需要设置代理的情况，或者我们原来的http服务升级成https，那我们的自动化测试case就需要作出相应的调整，一下案例是我在实际工作中遇到的情况，以及解决方案，持续更新中 HttpClient在使用httpclient调用https接口的时候，我们可以进行如下设置12345678910111213//设置代理HttpHost proxy = new HttpHost("100.21.23.1",10001);//设置证书信任CloseableHttpClient httpClient = HttpClients.custom() .setProxy(proxy) .setHostnameVerifier(new AllowAllHostnameVerifier()) .setSslcontext(new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() &#123; public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException &#123; return true; &#125; &#125;).build()).build(); seleniumselenium支持的浏览器比较多，每个浏览器的设置也不尽相同，以及是我遇到的情况 chrome123456789101112131415DesiredCapabilities browser = DesiredCapabilities.chrome();ChromeOptions options = new ChromeOptions();//设置代理String proxyStr = "100.21.23.1:10001";Proxy proxy = new Proxy();proxy.setHttpProxy(proxyStr).setFtpProxy(proxyStr).setSslProxy(proxyStr);browser.setCapability(ChromeOptions.PROXY, proxy);//设置证书信任List&lt;String&gt; optionsStrs = new ArrayList&lt;&gt;();optionsStrs.add("--remember-cert-error-decisions=true");optionsStrs.add("-trustAllSSLCertificates");options.addArguments(optionsStrs);browser.setCapability(ChromeOptions.CAPABILITY, options);ChromeDriver driver = new ChromeDriver(browser); IE123456789//设置代理String proxyStr = "100.21.23.1:10001";Proxy proxy = new Proxy();proxy.setHttpProxy(proxyStr).setFtpProxy(proxyStr).setSslProxy(proxyStr);//设置证书信任List&lt;String&gt; optionsStrs = new ArrayList&lt;&gt;();optionsStrs.add("--remember-cert-error-decisions=true");optionsStrs.add("-ignore-certificate-errors");options.addArguments(optionsStrs); htmlunithtmlunit是Java里面常用的无界面浏览器，可以模拟界面操作123456//设置证书信任webClient wc = new webClient(BrowserVersion.CHROME);wc.getOptions().setUseInsecureSSL(true);//设置代理ProxyConfig proxyConfig = new proxyConfig("100.21.23.1", "10001");wc.getOptions().setProxyConfig(proxyConfig); selenideselenide也是一个UI测试框架，其框架是基于selenium，但是比selenium使用更加简洁，我的其他博客中有介绍其基本使用方法 12//selenide中证书信任问题可以再启动case的时候加一行命令行,多个参数之间使用`,`分隔mvn clean -Dchromeoptions.args=-trustAllSSLCertificates 12345//设置代理String proxyStr = "100.21.23.1:10001";Proxy proxy = new Proxy();proxy.setHttpProxy(proxyStr).setFtpProxy(proxyStr).setSslProxy(proxyStr);WebDriverRunner.setProxy(proxy);]]></content>
+      <categories>
+        <category>自动化测试</category>
+      </categories>
+      <tags>
+        <tag>selenide</tag>
+        <tag>https</tag>
+        <tag>selenium</tag>
+        <tag>httpclient</tag>
+        <tag>proxy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[docker常用操作整理]]></title>
     <url>%2F2017%2F06%2F23%2Fdocker%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86%2F</url>
     <content type="text"><![CDATA[开始一个docker化的web服务器 docker run -d -p 80:80 --name webserver nginx如果docker在局部没有找到，docker将会从远处docker hub上拉取在本地浏览器中，输入http://localhost:80就会看到一个Nginx的欢迎页面 docker ps 查看当前正在运行的容器信息 123 ~  docker psCONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES9f7d5c73d804 nginx "nginx -g 'daemon ..." 10 minutes ago Up 2 seconds 0.0.0.0:80-&gt;80/tcp webserver 停止containersdocker stop webserver 停止镜像的运行,如果你想重启输入如下命令docker start webserver，一个停止了的container将不会出现在docker ps命令中，你需要输入docker ps -a才能看见 删除containers或者imagesdocker rm -f webserver这个命令将会删除container，但是不会删除Nginx的image，你可以使用命令docker images列出所有的镜像，你可能想保留一些镜像让你不必把他们再从Docker Hub中拉取。你可以使用docker rmi命令加一个镜像id，或者镜像名称来删除您不再需要的图像。例如：docker rmi nginx]]></content>
