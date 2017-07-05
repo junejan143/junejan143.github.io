@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-06-28T12:41:17.000Z</updated>
+  <updated>2017-07-05T14:28:11.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux命令记录</title>
+    <link href="http://www.520zhang.com/2017/07/04/linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"/>
+    <id>http://www.520zhang.com/2017/07/04/linux命令记录/</id>
+    <published>2017-07-04T15:05:26.000Z</published>
+    <updated>2017-07-05T14:28:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="echo-命令"><a href="#echo-命令" class="headerlink" title="echo 命令"></a>echo 命令</h3><ul>
+<li><h4 id="echo-e-处理特殊字符"><a href="#echo-e-处理特殊字符" class="headerlink" title="echo -e 处理特殊字符"></a>echo -e 处理特殊字符</h4><p>\a 发出警告声；<br>\b 删除前一个字符；<br>\c 最后不加上换行符号；<br>\f 换行但光标仍旧停留在原来的位置；<br>\n 换行且光标移至行首；<br>\r 光标移至行首，但不换行；<br>\t 插入tab；<br>\v 与\f相同；<br>\ 插入\字符；</p>
+<h5 id="i-e"><a href="#i-e" class="headerlink" title="i.e"></a>i.e</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> ~ <span class="built_in">echo</span> -e <span class="string">"z\bychen"</span></div><div class="line">ychen</div><div class="line"> ~ <span class="built_in">echo</span> -e <span class="string">"z\nychen"</span></div><div class="line">z</div><div class="line">ychen</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="echo-n-不换行输出"><a href="#echo-n-不换行输出" class="headerlink" title="echo -n 不换行输出"></a>echo -n 不换行输出</h4><h5 id="i-e-1"><a href="#i-e-1" class="headerlink" title="i.e"></a>i.e</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> ~ <span class="built_in">echo</span> -n <span class="string">"zyc"</span> ; <span class="built_in">echo</span> <span class="string">"hen"</span></div><div class="line">zychen</div><div class="line"> ~ <span class="built_in">echo</span>  <span class="string">"zyc"</span> ; <span class="built_in">echo</span> <span class="string">"hen"</span></div><div class="line">zyc</div><div class="line">hen</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="shell传参数"><a href="#shell传参数" class="headerlink" title="shell传参数"></a>shell传参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"><span class="comment"># 是传给脚本的参数个数</span></span></div><div class="line"><span class="meta">$</span><span class="bash">0 是脚本本身的名字</span></div><div class="line"><span class="meta">$</span><span class="bash">1 是传递给该shell脚本的第一个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">2 是传递给该shell脚本的第二个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">@ 是传给脚本的所有参数的列表</span></div><div class="line"><span class="meta">$</span><span class="bash">* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个</span></div><div class="line"><span class="meta">$</span><span class="bash">$ 是脚本运行的当前进程ID号</span></div><div class="line"><span class="meta">$</span><span class="bash">? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;echo-命令&quot;&gt;&lt;a href=&quot;#echo-命令&quot; class=&quot;headerlink&quot; title=&quot;echo 命令&quot;&gt;&lt;/a&gt;echo 命令&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h4 id=&quot;echo-e-处理特殊字符&quot;&gt;&lt;a href=&quot;#echo-e-处理特殊
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://www.520zhang.com/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>自动化测试中设置代理以及https的证书信任问题</title>
@@ -43,9 +71,9 @@
     
       <category term="selenide" scheme="http://www.520zhang.com/tags/selenide/"/>
     
-      <category term="https" scheme="http://www.520zhang.com/tags/https/"/>
-    
       <category term="selenium" scheme="http://www.520zhang.com/tags/selenium/"/>
+    
+      <category term="https" scheme="http://www.520zhang.com/tags/https/"/>
     
       <category term="httpclient" scheme="http://www.520zhang.com/tags/httpclient/"/>
     

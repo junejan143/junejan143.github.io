@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux命令记录]]></title>
+    <url>%2F2017%2F07%2F04%2Flinux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[echo 命令 echo -e 处理特殊字符\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符； i.e12345 ~ echo -e "z\bychen"ychen ~ echo -e "z\nychen"zychen echo -n 不换行输出i.e12345 ~ echo -n "zyc" ; echo "hen"zychen ~ echo "zyc" ; echo "hen"zychen shell传参数12345678$# 是传给脚本的参数个数$0 是脚本本身的名字$1 是传递给该shell脚本的第一个参数$2 是传递给该shell脚本的第二个参数$@ 是传给脚本的所有参数的列表$* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个$$ 是脚本运行的当前进程ID号$? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[自动化测试中设置代理以及https的证书信任问题]]></title>
     <url>%2F2017%2F06%2F28%2F%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E4%BB%A5%E5%8F%8Ahttps%E7%9A%84%E8%AF%81%E4%B9%A6%E4%BF%A1%E4%BB%BB%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[简述在我们的日常测试开发过程中，我们难免会遇到需要设置代理的情况，或者我们原来的http服务升级成https，那我们的自动化测试case就需要作出相应的调整，一下案例是我在实际工作中遇到的情况，以及解决方案，持续更新中 HttpClient在使用httpclient调用https接口的时候，我们可以进行如下设置12345678910111213//设置代理HttpHost proxy = new HttpHost("100.21.23.1",10001);//设置证书信任CloseableHttpClient httpClient = HttpClients.custom() .setProxy(proxy) .setHostnameVerifier(new AllowAllHostnameVerifier()) .setSslcontext(new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() &#123; public boolean isTrusted(X509Certificate[] arg0, String arg1) throws CertificateException &#123; return true; &#125; &#125;).build()).build(); seleniumselenium支持的浏览器比较多，每个浏览器的设置也不尽相同，以及是我遇到的情况 chrome123456789101112131415DesiredCapabilities browser = DesiredCapabilities.chrome();ChromeOptions options = new ChromeOptions();//设置代理String proxyStr = "100.21.23.1:10001";Proxy proxy = new Proxy();proxy.setHttpProxy(proxyStr).setFtpProxy(proxyStr).setSslProxy(proxyStr);browser.setCapability(ChromeOptions.PROXY, proxy);//设置证书信任List&lt;String&gt; optionsStrs = new ArrayList&lt;&gt;();optionsStrs.add("--remember-cert-error-decisions=true");optionsStrs.add("-trustAllSSLCertificates");options.addArguments(optionsStrs);browser.setCapability(ChromeOptions.CAPABILITY, options);ChromeDriver driver = new ChromeDriver(browser); IE123456789//设置代理String proxyStr = "100.21.23.1:10001";Proxy proxy = new Proxy();proxy.setHttpProxy(proxyStr).setFtpProxy(proxyStr).setSslProxy(proxyStr);//设置证书信任List&lt;String&gt; optionsStrs = new ArrayList&lt;&gt;();optionsStrs.add("--remember-cert-error-decisions=true");optionsStrs.add("-ignore-certificate-errors");options.addArguments(optionsStrs); htmlunithtmlunit是Java里面常用的无界面浏览器，可以模拟界面操作123456//设置证书信任webClient wc = new webClient(BrowserVersion.CHROME);wc.getOptions().setUseInsecureSSL(true);//设置代理ProxyConfig proxyConfig = new proxyConfig("100.21.23.1", "10001");wc.getOptions().setProxyConfig(proxyConfig); selenideselenide也是一个UI测试框架，其框架是基于selenium，但是比selenium使用更加简洁，我的其他博客中有介绍其基本使用方法 12//selenide中证书信任问题可以再启动case的时候加一行命令行,多个参数之间使用`,`分隔mvn clean -Dchromeoptions.args=-trustAllSSLCertificates 12345//设置代理String proxyStr = "100.21.23.1:10001";Proxy proxy = new Proxy();proxy.setHttpProxy(proxyStr).setFtpProxy(proxyStr).setSslProxy(proxyStr);WebDriverRunner.setProxy(proxy);]]></content>
@@ -9,8 +17,8 @@
       </categories>
       <tags>
         <tag>selenide</tag>
-        <tag>https</tag>
         <tag>selenium</tag>
+        <tag>https</tag>
         <tag>httpclient</tag>
         <tag>proxy</tag>
       </tags>
