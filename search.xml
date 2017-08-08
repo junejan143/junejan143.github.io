@@ -24,8 +24,8 @@
         <category>自动化测试</category>
       </categories>
       <tags>
-        <tag>selenide</tag>
         <tag>selenium</tag>
+        <tag>selenide</tag>
         <tag>https</tag>
         <tag>httpclient</tag>
         <tag>proxy</tag>
