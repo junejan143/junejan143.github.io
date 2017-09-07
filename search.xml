@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[深入理解Java虚拟机笔记]]></title>
+    <url>%2F2017%2F08%2F10%2F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[###第二章 ####程序计数器1.为了线程切换后能够恢复到正确的执行位置，每一个线程都有一个独立的程序计数器，各个线程之间互不影响2.如果线程正在执行的是一个Java方法，则程序计数器记录的是正在执行的虚拟机字节码指令的地址，如果正在执行的是Native方法，这个计数器值为空 ####Java虚拟机栈1.Java虚拟机栈也是线程私有的，生命周期与线程相同2.每个方法在执行时都会创建一个栈帧用于存储：局部变量表、操作数栈、动态链接、方法出口等信息3.我们一般指的“堆栈”里面的栈就是指的虚拟机栈（或者说是局部变量表部分）4.局部变量表部分存放：基本数据类型（boolean、byte、char、short、int、float、long、double）、对象引用类型（指向对象起始地址的引用地址、或者一个指向对象的句柄或其他与此对象相关的位置和returnAddress类型）5.64位长度的long和double类型的数据会占用2个局部变量空间（Slot），其余的数据类型只占1个，内存空间在编译期间完成分配6.进入一个方法是，帧中分配多大的局部变量空间是完全确定的，在方法运行期间不会改变大小 ####Java堆1.此内存区域的唯一目的就是存放对象实例2.垃圾收集器管理的主要区域，又被称为“GC堆”3.从内存回收角度看，由于现在的收集器基本都采用分代收集算法，所以Java堆又细分为：新生代和老年代；再细致点有Eden空间、From Suvivor空间、To Survivor空间 ####方法区 与Java堆一样，是各个线程共享的内存区域 存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据 OutOfMemoryError的情况1.虚拟机栈中，如果虚拟机可以动态扩展，如果扩展是无法申请到足够的内存，就会抛出OutOfMemoryError异常2.本地方法栈也会抛出OutOfMemoryError异常3.堆中没有内存完成实例分配，并且堆也无法再扩展时]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[常见面试题记录]]></title>
     <url>%2F2017%2F08%2F08%2F%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[Java 使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？这个可以用consistent hash（一致性hash）,具体算法原理Google Java现有的数据结构实现一个LRU缓存？使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客 实现一个基于内存的ip黑/白名单具体实现？使用布隆过滤器 一个主线程下有多个子线程任务，主线程必须在100秒内将子线程执行的集合结果进行处理返回？这个可以使用线程池的辅助类CountDownLatch，在wait的时候设置等待时间 1G日志文件解析？ 分布式系统，两个系统之间，数据交互的方式有哪些？哪种比较好？安全？ 测试 Junit或者testng有哪些高级用法？ 如何测一个登录功能？]]></content>
+    <content type="text"><![CDATA[Java 使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？这个可以用consistent hash（一致性hash）,具体算法原理Google Java现有的数据结构实现一个LRU缓存？使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客 实现一个基于内存的ip黑/白名单具体实现？使用布隆过滤器 一个主线程下有多个子线程任务，主线程必须在100秒内将子线程执行的集合结果进行处理返回？这个可以使用线程池的辅助类CountDownLatch，在wait的时候设置等待时间 1G日志文件解析？awk命令？ 分布式系统，两个系统之间，数据交互的方式有哪些？哪种比较好？安全？ 一个不知道多少层级的文件夹，文件夹下面有txt文件以及子文件夹，给定一个目录如何求出所有文件中出现频率最多的前10个单词 spring IOC的原理，实现步骤，如何自己设计一套？ 注解的实现，元注解有哪些？@Target:说明了Annotation所修饰的对象范围@Inherited：元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。@Retention 1.SOURCE:在源文件中有效（即源文件保留）2.CLASS:在class文件中有效（即class保留）3.RUNTIME:在运行时有效（即运行时保留 你是如何获取方法中的方法参数名字的？ 1234package org.springframework.core;//获取方法的参数名列表ParameterNameDiscoverer paramNameDiscover = new LocalVariableTableParameterNameDiscoverer();String[] paramNames = paramNameDiscover.getParameterNames(method); 测试 Junit或者testng有哪些高级用法？ 如何测一个登录功能？ Junit的原理，执行过程，是否看过源码？ selenium如果运行过程中新打开一个页面需要注意什么？ awk命令的$代表什么意思，如何打印出某行某列 如何处理测试过程中的数据？比如说每次的post接口都会往数据库插入数据，如何在测试运行后处理数据？ 如何设计一套类似于postman的接口测试网站，说出你的思路？ selenium的显示等待和隐式等待的区别？]]></content>
       <tags>
         <tag>面试</tag>
       </tags>
@@ -11,7 +16,7 @@
   <entry>
     <title><![CDATA[Linux命令记录]]></title>
     <url>%2F2017%2F07%2F04%2Flinux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95%2F</url>
-    <content type="text"><![CDATA[echo 命令 echo -e 处理特殊字符\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符； i.e12345 ~ echo -e "z\bychen"ychen ~ echo -e "z\nychen"zychen echo -n 不换行输出i.e12345 ~ echo -n "zyc" ; echo "hen"zychen ~ echo "zyc" ; echo "hen"zychen shell传参数12345678$# 是传给脚本的参数个数$0 是脚本本身的名字$1 是传递给该shell脚本的第一个参数$2 是传递给该shell脚本的第二个参数$@ 是传给脚本的所有参数的列表$* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个$$ 是脚本运行的当前进程ID号$? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误]]></content>
+    <content type="text"><![CDATA[echo 命令 echo -e 处理特殊字符\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符； i.e12345 ~ echo -e "z\bychen"ychen ~ echo -e "z\nychen"zychen echo -n 不换行输出i.e12345 ~ echo -n "zyc" ; echo "hen"zychen ~ echo "zyc" ; echo "hen"zychen shell传参数12345678$# 是传给脚本的参数个数$0 是脚本本身的名字$1 是传递给该shell脚本的第一个参数$2 是传递给该shell脚本的第二个参数$@ 是传给脚本的所有参数的列表$* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个$$ 是脚本运行的当前进程ID号$? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误 awk的应用 awk的内置变量NR:代表的是行记录数NF:代表的是每列记录数FS:分隔符,等价于-F,默认是空格，如果想是用冒号分隔 awk -F : &#39;print $1&#39; marks.txt 打印5行3列的内容awk &#39;{if(NR==5) print $1}&#39; marks.txt 求出第四列的所有数据之和awk &#39;{sum+=$4};END {print sum}&#39; marks.txt]]></content>
       <tags>
         <tag>Linux</tag>
       </tags>
@@ -24,8 +29,8 @@
         <category>自动化测试</category>
       </categories>
       <tags>
-        <tag>selenium</tag>
         <tag>selenide</tag>
+        <tag>selenium</tag>
         <tag>https</tag>
         <tag>httpclient</tag>
         <tag>proxy</tag>
@@ -68,9 +73,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[CountDownLatch、ExecutorService的使用]]></title>
+    <title><![CDATA[CountDownLatch、CyclicBarrier、ExecutorService的使用]]></title>
     <url>%2F2017%2F06%2F11%2FCountDownLatch%E3%80%81ExecutorService%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[1234567891011121314public class TestService &#123; public static void main(String[] args) &#123; CountDownLatch countDownLatch = new CountDownLatch(50); //开启一个线程池 ExecutorService executor = Executors.newCachedThreadPool(); //执行TestThread里面的run方法 executor.execute(new TestThread(countDownLatch)); executor.execute(new TestThread(countDownLatch)); executor.execute(new TestThread(countDownLatch)); //线程池不再接受新的任务 executor.shutdown(); &#125;&#125; executor.execute(new TestThread(countDownLatch));这段传入的是一个实现Runnable接口的类，执行的方法则是run方法里面的内容，每一个execute则是开启一个线程 12345678910111213public class TestThread implements Runnable&#123; private CountDownLatch countDownLatch; public TestThread( CountDownLatch countDownLatch )&#123; this.countDownLatch = countDownLatch; &#125; public void run() &#123; while (countDownLatch.getCount() &gt;0)&#123; countDownLatch.countDown(); System.out.println("输出："+Thread.currentThread()+"&gt;&gt;&gt;"+ countDownLatch.getCount()); &#125; &#125;&#125; CountDownLatch countDownLatch = new CountDownLatch(50);这段是启用一个线程辅助类，传入的参数是一个int类型的计数，在TestThread中的run方法中，每执行一次，通过调用countDownLatch.countDown();方法计数减一，当计数内容为0时，则子线程全部执行完成，此时主线程才能继续往下执行。 输出结果12345678910111213141516输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;49输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;47输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;46输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;45输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;44输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;43输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;42输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;41输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;40输出：Thread[pool-1-thread-2,5,main]&gt;&gt;&gt;48输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;39输出：Thread[pool-1-thread-2,5,main]&gt;&gt;&gt;38输出：Thread[pool-1-thread-3,5,main]&gt;&gt;&gt;36输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;36输出：Thread[pool-1-thread-3,5,main]&gt;&gt;&gt;34... 具体用法请google]]></content>
+    <content type="text"><![CDATA[CountDownLatch代表的是当所有子线程都执行完成的时候再执行主线程，只要子线程还没有执行完成，主线程就处于一个等待状态。 CyclicBarrier代表的是当所有子线程到达某一个地方的时候再一起执行，就好像大家一起去爬山，约好一个集合地点，然后大家有的走的快，有的走的慢，但是需要所有人都到达了才能一起继续出发。1234567891011121314public class TestService &#123; public static void main(String[] args) &#123; CountDownLatch countDownLatch = new CountDownLatch(50); //开启一个线程池 ExecutorService executor = Executors.newCachedThreadPool(); //执行TestThread里面的run方法 executor.execute(new TestThread(countDownLatch)); executor.execute(new TestThread(countDownLatch)); executor.execute(new TestThread(countDownLatch)); //线程池不再接受新的任务 executor.shutdown(); &#125;&#125; executor.execute(new TestThread(countDownLatch));这段传入的是一个实现Runnable接口的类，执行的方法则是run方法里面的内容，每一个execute则是开启一个线程 12345678910111213public class TestThread implements Runnable&#123; private CountDownLatch countDownLatch; public TestThread( CountDownLatch countDownLatch )&#123; this.countDownLatch = countDownLatch; &#125; public void run() &#123; while (countDownLatch.getCount() &gt;0)&#123; countDownLatch.countDown(); System.out.println("输出："+Thread.currentThread()+"&gt;&gt;&gt;"+ countDownLatch.getCount()); &#125; &#125;&#125; CountDownLatch countDownLatch = new CountDownLatch(50);这段是启用一个线程辅助类，传入的参数是一个int类型的计数，在TestThread中的run方法中，每执行一次，通过调用countDownLatch.countDown();方法计数减一，当计数内容为0时，则子线程全部执行完成，此时主线程才能继续往下执行。 输出结果12345678910111213141516输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;49输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;47输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;46输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;45输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;44输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;43输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;42输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;41输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;40输出：Thread[pool-1-thread-2,5,main]&gt;&gt;&gt;48输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;39输出：Thread[pool-1-thread-2,5,main]&gt;&gt;&gt;38输出：Thread[pool-1-thread-3,5,main]&gt;&gt;&gt;36输出：Thread[pool-1-thread-1,5,main]&gt;&gt;&gt;36输出：Thread[pool-1-thread-3,5,main]&gt;&gt;&gt;34... 具体用法请google]]></content>
       <categories>
         <category>Java</category>
       </categories>

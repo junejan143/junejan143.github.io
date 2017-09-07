@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://www.520zhang.com/2017/06/11/CountDownLatch%E3%80%81ExecutorService%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2017-09-07T13:04:56.000Z</lastmod>
+    <data>
+        <display>
+        <title>CountDownLatch、CyclicBarrier、ExecutorService的使用</title>
+        <pubTime>2017-06-10T18:31:50.000Z</pubTime>
+        
+        <tag>多线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://www.520zhang.com/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.520zhang.com/2017/08/08/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2017-08-08T14:57:41.000Z</lastmod>
+    <lastmod>2017-09-07T12:55:43.000Z</lastmod>
     <data>
         <display>
         <title>常见面试题记录</title>
@@ -13,6 +33,38 @@
         
         <tag>面试</tag>
          
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/07/04/linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2017-09-07T12:17:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux命令记录</title>
+        <pubTime>2017-07-04T15:05:26.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.520zhang.com/2017/08/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-08-10T14:49:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>深入理解Java虚拟机笔记</title>
+        <pubTime>2017-08-10T14:19:06.000Z</pubTime>
+        
          
            
         </display>
@@ -45,23 +97,6 @@
 
     
   <url>
-    <loc>http://www.520zhang.com/2017/07/04/linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2017-07-05T14:28:11.000Z</lastmod>
-    <data>
-        <display>
-        <title>Linux命令记录</title>
-        <pubTime>2017-07-04T15:05:26.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.520zhang.com/2017/06/28/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E4%B8%AD%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E4%BB%A5%E5%8F%8Ahttps%E7%9A%84%E8%AF%81%E4%B9%A6%E4%BF%A1%E4%BB%BB%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2017-06-28T12:41:17.000Z</lastmod>
     <data>
@@ -69,9 +104,9 @@
         <title>自动化测试中设置代理以及https的证书信任问题</title>
         <pubTime>2017-06-28T11:47:41.000Z</pubTime>
         
-        <tag>selenium</tag>
-         
         <tag>selenide</tag>
+         
+        <tag>selenium</tag>
          
         <tag>https</tag>
          
@@ -147,26 +182,6 @@
            
              
               <breadCrumb title="工具" url="http://www.520zhang.com/categories/%E5%B7%A5%E5%85%B7/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.520zhang.com/2017/06/11/CountDownLatch%E3%80%81ExecutorService%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2017-06-10T18:32:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>CountDownLatch、ExecutorService的使用</title>
-        <pubTime>2017-06-10T18:31:50.000Z</pubTime>
-        
-        <tag>多线程</tag>
-         
-         
-           
-             
-              <breadCrumb title="Java" url="http://www.520zhang.com/categories/Java/"/>
           
         </display>
     </data>

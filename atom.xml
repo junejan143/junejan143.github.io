@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-08-08T14:57:41.000Z</updated>
+  <updated>2017-08-10T14:49:45.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -16,25 +16,68 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>深入理解Java虚拟机笔记</title>
+    <link href="http://www.520zhang.com/2017/08/10/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0/"/>
+    <id>http://www.520zhang.com/2017/08/10/深入理解Java虚拟机笔记/</id>
+    <published>2017-08-10T14:19:06.000Z</published>
+    <updated>2017-08-10T14:49:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>###第二章</p>
+<p>####程序计数器<br>1.为了线程切换后能够恢复到正确的执行位置，每一个线程都有一个独立的程序计数器，各个线程之间互不影响<br>2.如果线程正在执行的是一个Java方法，则程序计数器记录的是正在执行的虚拟机字节码指令的地址，如果正在执行的是Native方法，这个计数器值为空</p>
+<p>####Java虚拟机栈<br>1.Java虚拟机栈也是线程私有的，生命周期与线程相同<br>2.每个方法在执行时都会创建一个栈帧用于存储：<code>局部变量表</code>、<code>操作数栈</code>、<code>动态链接</code>、<code>方法出口</code>等信息<br>3.我们一般指的“堆栈”里面的栈就是指的虚拟机栈（或者说是局部变量表部分）<br>4.局部变量表部分存放：基本数据类型（boolean、byte、char、short、int、float、long、double）、对象引用类型（指向对象起始地址的引用地址、或者一个指向对象的句柄或其他与此对象相关的位置和returnAddress类型）<br>5.64位长度的long和double类型的数据会占用2个局部变量空间（Slot），其余的数据类型只占1个，内存空间在编译期间完成分配<br>6.进入一个方法是，帧中分配多大的<code>局部变量空间</code>是完全确定的，在方法运行期间不会改变大小</p>
+<p>####Java堆<br>1.此内存区域的唯一目的就是存放<code>对象实例</code><br>2.垃圾收集器管理的主要区域，又被称为“GC堆”<br>3.从内存回收角度看，由于现在的收集器基本都采用分代收集算法，所以Java堆又细分为：新生代和老年代；再细致点有Eden空间、From Suvivor空间、To Survivor空间</p>
+<p>####方法区</p>
+<ol>
+<li>与Java堆一样，是各个线程共享的内存区域</li>
+<li>存储已被虚拟机加载的<code>类信息</code>、<code>常量</code>、<code>静态变量</code>、<code>即时编译器编译后的代码</code>等数据</li>
+</ol>
+<h4 id="OutOfMemoryError的情况"><a href="#OutOfMemoryError的情况" class="headerlink" title="OutOfMemoryError的情况"></a>OutOfMemoryError的情况</h4><p>1.虚拟机栈中，如果虚拟机可以动态扩展，如果扩展是无法申请到足够的内存，就会抛出<code>OutOfMemoryError</code>异常<br>2.本地方法栈也会抛出<code>OutOfMemoryError</code>异常<br>3.堆中没有内存完成实例分配，并且堆也无法再扩展时</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###第二章&lt;/p&gt;
+&lt;p&gt;####程序计数器&lt;br&gt;1.为了线程切换后能够恢复到正确的执行位置，每一个线程都有一个独立的程序计数器，各个线程之间互不影响&lt;br&gt;2.如果线程正在执行的是一个Java方法，则程序计数器记录的是正在执行的虚拟机字节码指令的地址，如果正在执行的是
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>常见面试题记录</title>
     <link href="http://www.520zhang.com/2017/08/08/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.520zhang.com/2017/08/08/常见面试题记录/</id>
     <published>2017-08-08T14:45:21.000Z</published>
-    <updated>2017-08-08T14:57:41.000Z</updated>
+    <updated>2017-09-07T12:55:43.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><ol>
 <li><code>使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？</code><br>这个可以用consistent hash（一致性hash）,具体算法原理Google</li>
 <li><code>Java现有的数据结构实现一个LRU缓存？</code><br>使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客</li>
 <li><code>实现一个基于内存的ip黑/白名单具体实现？</code><br>使用布隆过滤器</li>
 <li><code>一个主线程下有多个子线程任务，主线程必须在100秒内将子线程执行的集合结果进行处理返回？</code><br>这个可以使用线程池的辅助类CountDownLatch，在wait的时候设置等待时间</li>
-<li><p><code>1G日志文件解析？</code></p>
+<li><code>1G日志文件解析？</code><br>awk命令？</li>
+<li><code>分布式系统，两个系统之间，数据交互的方式有哪些？哪种比较好？安全？</code></li>
+<li><code>一个不知道多少层级的文件夹，文件夹下面有txt文件以及子文件夹，给定一个目录如何求出所有文件中出现频率最多的前10个单词</code></li>
+<li><code>spring IOC的原理，实现步骤，如何自己设计一套？</code></li>
+<li><p><code>注解的实现，元注解有哪些？</code><br>@Target:说明了Annotation所修饰的对象范围<br>@Inherited：元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。<br>@Retention  </p>
+<blockquote>
+<p>1.SOURCE:在源文件中有效（即源文件保留）<br>2.CLASS:在class文件中有效（即class保留）<br>3.RUNTIME:在运行时有效（即运行时保留</p>
+</blockquote>
 </li>
-<li><p><code>分布式系统，两个系统之间，数据交互的方式有哪些？哪种比较好？安全？</code></p>
+<li><p><code>你是如何获取方法中的方法参数名字的？</code></p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">package org.springframework.core;</div><div class="line"><span class="comment">//获取方法的参数名列表</span></div><div class="line">ParameterNameDiscoverer paramNameDiscover = <span class="keyword">new</span> LocalVariableTableParameterNameDiscoverer();</div><div class="line">String[] paramNames = paramNameDiscover.getParameterNames(<span class="function"><span class="keyword">method</span>);</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ol>
 <li><code>Junit或者testng有哪些高级用法？</code></li>
 <li><code>如何测一个登录功能？</code></li>
+<li><code>Junit的原理，执行过程，是否看过源码？</code></li>
+<li><code>selenium如果运行过程中新打开一个页面需要注意什么？</code></li>
+<li><code>awk命令的$代表什么意思，如何打印出某行某列</code></li>
+<li><code>如何处理测试过程中的数据？比如说每次的post接口都会往数据库插入数据，如何在测试运行后处理数据？</code></li>
+<li><code>如何设计一套类似于postman的接口测试网站，说出你的思路？</code></li>
+<li><code>selenium的显示等待和隐式等待的区别？</code></li>
 </ol>
 ]]></content>
     
@@ -55,7 +98,7 @@
     <link href="http://www.520zhang.com/2017/07/04/linux%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.520zhang.com/2017/07/04/linux命令记录/</id>
     <published>2017-07-04T15:05:26.000Z</published>
-    <updated>2017-07-05T14:28:11.000Z</updated>
+    <updated>2017-09-07T12:17:30.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="echo-命令"><a href="#echo-命令" class="headerlink" title="echo 命令"></a>echo 命令</h3><ul>
 <li><h4 id="echo-e-处理特殊字符"><a href="#echo-e-处理特殊字符" class="headerlink" title="echo -e 处理特殊字符"></a>echo -e 处理特殊字符</h4><p>\a 发出警告声；<br>\b 删除前一个字符；<br>\c 最后不加上换行符号；<br>\f 换行但光标仍旧停留在原来的位置；<br>\n 换行且光标移至行首；<br>\r 光标移至行首，但不换行；<br>\t 插入tab；<br>\v 与\f相同；<br>\ 插入\字符；</p>
@@ -64,7 +107,13 @@
 <li><h4 id="echo-n-不换行输出"><a href="#echo-n-不换行输出" class="headerlink" title="echo -n 不换行输出"></a>echo -n 不换行输出</h4><h5 id="i-e-1"><a href="#i-e-1" class="headerlink" title="i.e"></a>i.e</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> ~ <span class="built_in">echo</span> -n <span class="string">"zyc"</span> ; <span class="built_in">echo</span> <span class="string">"hen"</span></div><div class="line">zychen</div><div class="line"> ~ <span class="built_in">echo</span>  <span class="string">"zyc"</span> ; <span class="built_in">echo</span> <span class="string">"hen"</span></div><div class="line">zyc</div><div class="line">hen</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="shell传参数"><a href="#shell传参数" class="headerlink" title="shell传参数"></a>shell传参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"><span class="comment"># 是传给脚本的参数个数</span></span></div><div class="line"><span class="meta">$</span><span class="bash">0 是脚本本身的名字</span></div><div class="line"><span class="meta">$</span><span class="bash">1 是传递给该shell脚本的第一个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">2 是传递给该shell脚本的第二个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">@ 是传给脚本的所有参数的列表</span></div><div class="line"><span class="meta">$</span><span class="bash">* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个</span></div><div class="line"><span class="meta">$</span><span class="bash">$ 是脚本运行的当前进程ID号</span></div><div class="line"><span class="meta">$</span><span class="bash">? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误</span></div></pre></td></tr></table></figure>]]></content>
+<h3 id="shell传参数"><a href="#shell传参数" class="headerlink" title="shell传参数"></a>shell传参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"><span class="comment"># 是传给脚本的参数个数</span></span></div><div class="line"><span class="meta">$</span><span class="bash">0 是脚本本身的名字</span></div><div class="line"><span class="meta">$</span><span class="bash">1 是传递给该shell脚本的第一个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">2 是传递给该shell脚本的第二个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">@ 是传给脚本的所有参数的列表</span></div><div class="line"><span class="meta">$</span><span class="bash">* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个</span></div><div class="line"><span class="meta">$</span><span class="bash">$ 是脚本运行的当前进程ID号</span></div><div class="line"><span class="meta">$</span><span class="bash">? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误</span></div></pre></td></tr></table></figure>
+<h3 id="awk的应用"><a href="#awk的应用" class="headerlink" title="awk的应用"></a>awk的应用</h3><ul>
+<li>awk的内置变量<br>NR:代表的是行记录数<br>NF:代表的是每列记录数<br>FS:分隔符,等价于-F,默认是空格，如果想是用冒号分隔   <code>awk -F : &#39;print $1&#39; marks.txt</code><br><img src="/images/awk.png" alt="实际操作"></li>
+<li>打印5行3列的内容<br><code>awk &#39;{if(NR==5) print $1}&#39; marks.txt</code></li>
+<li>求出第四列的所有数据之和<br><code>awk &#39;{sum+=$4};END {print sum}&#39; marks.txt</code></li>
+</ul>
+]]></content>
     
     <summary type="html">
     
@@ -104,9 +153,9 @@
       <category term="自动化测试" scheme="http://www.520zhang.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="selenium" scheme="http://www.520zhang.com/tags/selenium/"/>
-    
       <category term="selenide" scheme="http://www.520zhang.com/tags/selenide/"/>
+    
+      <category term="selenium" scheme="http://www.520zhang.com/tags/selenium/"/>
     
       <category term="https" scheme="http://www.520zhang.com/tags/https/"/>
     
@@ -243,27 +292,33 @@
   </entry>
   
   <entry>
-    <title>CountDownLatch、ExecutorService的使用</title>
+    <title>CountDownLatch、CyclicBarrier、ExecutorService的使用</title>
     <link href="http://www.520zhang.com/2017/06/11/CountDownLatch%E3%80%81ExecutorService%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://www.520zhang.com/2017/06/11/CountDownLatch、ExecutorService的使用/</id>
     <published>2017-06-10T18:31:50.000Z</published>
-    <updated>2017-06-10T18:32:30.000Z</updated>
+    <updated>2017-09-07T13:04:56.000Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> <span class="type">CountDownLatch</span>(<span class="number">50</span>);</div><div class="line">        <span class="comment">//开启一个线程池</span></div><div class="line">        ExecutorService executor = Executors.<span class="keyword">new</span><span class="type">CachedThreadPool</span>();</div><div class="line">        <span class="comment">//执行TestThread里面的run方法</span></div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        <span class="comment">//线程池不再接受新的任务</span></div><div class="line">        executor.shutdown();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
+    <content type="html"><![CDATA[<ul>
+<li>CountDownLatch代表的是当所有子线程都执行完成的时候再执行主线程，只要子线程还没有执行完成，主线程就处于一个等待状态。</li>
+<li>CyclicBarrier代表的是当所有子线程到达某一个地方的时候再一起执行，就好像大家一起去爬山，约好一个集合地点，然后大家有的走的快，有的走的慢，但是需要所有人都到达了才能一起继续出发。<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> <span class="type">CountDownLatch</span>(<span class="number">50</span>);</div><div class="line">        <span class="comment">//开启一个线程池</span></div><div class="line">        ExecutorService executor = Executors.<span class="keyword">new</span><span class="type">CachedThreadPool</span>();</div><div class="line">        <span class="comment">//执行TestThread里面的run方法</span></div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        <span class="comment">//线程池不再接受新的任务</span></div><div class="line">        executor.shutdown();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
 <li><code>executor.execute(new TestThread(countDownLatch));</code>这段传入的是一个实现<code>Runnable</code>接口的类，执行的方法则是<code>run</code>方法里面的内容，每一个<code>execute</code>则是开启一个线程</li>
-</ul>
+</ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</div><div class="line">    <span class="keyword">private</span>  CountDownLatch countDownLatch;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TestThread</span><span class="params">( CountDownLatch countDownLatch )</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.countDownLatch = countDownLatch;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (countDownLatch.getCount() &gt;<span class="number">0</span>)&#123;</div><div class="line">            countDownLatch.countDown();</div><div class="line">            System.out.println(<span class="string">"输出："</span>+Thread.currentThread()+<span class="string">"&gt;&gt;&gt;"</span>+ countDownLatch.getCount());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
+<ol>
 <li><code>CountDownLatch countDownLatch = new CountDownLatch(50);</code>这段是启用一个线程辅助类，传入的参数是一个<code>int</code>类型的计数，在<code>TestThread</code>中的<code>run</code>方法中，每执行一次，通过调用<code>countDownLatch.countDown();</code>方法计数减一，当计数内容为<code>0</code>时，则子线程全部执行完成，此时主线程才能继续往下执行。</li>
-</ul>
+</ol>
 <h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">49</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">47</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">46</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">45</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">44</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">43</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">42</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">41</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">40</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-2</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">48</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">39</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-2</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">38</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-3</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">36</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">36</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-3</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">34</span></div><div class="line">...</div></pre></td></tr></table></figure>
 <p>具体用法请google</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;figure class=&quot;highlight haxe&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div
+      &lt;ul&gt;
+&lt;li&gt;CountDownLatch代表的是当所有子线程都执行完成的时候再执行主线程，只要子线程还没有执行完成，主线程就处于一个等待状态。&lt;/li&gt;
+&lt;li&gt;CyclicBarrier代表的是当所有子线程到达某一个地方的时候再一起执行，就好像大家一起去爬山，约好一个集合
     
     </summary>
     

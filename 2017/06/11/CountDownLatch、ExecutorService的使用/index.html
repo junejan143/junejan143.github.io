@@ -119,17 +119,17 @@
 
 
 
-<meta name="description" content="1234567891011121314public class TestService &amp;#123;    public static void main(String[] args) &amp;#123;        CountDownLatch countDownLatch = new CountDownLatch(50);        //开启一个线程池        ExecutorServi">
+<meta name="description" content="CountDownLatch代表的是当所有子线程都执行完成的时候再执行主线程，只要子线程还没有执行完成，主线程就处于一个等待状态。 CyclicBarrier代表的是当所有子线程到达某一个地方的时候再一起执行，就好像大家一起去爬山，约好一个集合地点，然后大家有的走的快，有的走的慢，但是需要所有人都到达了才能一起继续出发。1234567891011121314public class TestSe">
 <meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CountDownLatch、ExecutorService的使用">
+<meta property="og:title" content="CountDownLatch、CyclicBarrier、ExecutorService的使用">
 <meta property="og:url" content="http://www.520zhang.com/2017/06/11/CountDownLatch、ExecutorService的使用/index.html">
 <meta property="og:site_name" content="幻影">
-<meta property="og:description" content="1234567891011121314public class TestService &amp;#123;    public static void main(String[] args) &amp;#123;        CountDownLatch countDownLatch = new CountDownLatch(50);        //开启一个线程池        ExecutorServi">
-<meta property="og:updated_time" content="2017-06-10T18:32:30.000Z">
+<meta property="og:description" content="CountDownLatch代表的是当所有子线程都执行完成的时候再执行主线程，只要子线程还没有执行完成，主线程就处于一个等待状态。 CyclicBarrier代表的是当所有子线程到达某一个地方的时候再一起执行，就好像大家一起去爬山，约好一个集合地点，然后大家有的走的快，有的走的慢，但是需要所有人都到达了才能一起继续出发。1234567891011121314public class TestSe">
+<meta property="og:updated_time" content="2017-09-07T13:04:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CountDownLatch、ExecutorService的使用">
-<meta name="twitter:description" content="1234567891011121314public class TestService &amp;#123;    public static void main(String[] args) &amp;#123;        CountDownLatch countDownLatch = new CountDownLatch(50);        //开启一个线程池        ExecutorServi">
+<meta name="twitter:title" content="CountDownLatch、CyclicBarrier、ExecutorService的使用">
+<meta name="twitter:description" content="CountDownLatch代表的是当所有子线程都执行完成的时候再执行主线程，只要子线程还没有执行完成，主线程就处于一个等待状态。 CyclicBarrier代表的是当所有子线程到达某一个地方的时候再一起执行，就好像大家一起去爬山，约好一个集合地点，然后大家有的走的快，有的走的慢，但是需要所有人都到达了才能一起继续出发。1234567891011121314public class TestSe">
 
 
 
@@ -164,7 +164,7 @@
 
 
 
-  <title>CountDownLatch、ExecutorService的使用 | 幻影</title>
+  <title>CountDownLatch、CyclicBarrier、ExecutorService的使用 | 幻影</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -331,7 +331,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CountDownLatch、ExecutorService的使用</h2>
+          <h2 class="post-title" itemprop="name headline">CountDownLatch、CyclicBarrier、ExecutorService的使用</h2>
         
 
         <div class="post-meta">
@@ -393,7 +393,7 @@
 
           
           
-             <span id="/2017/06/11/CountDownLatch、ExecutorService的使用/" class="leancloud_visitors" data-flag-title="CountDownLatch、ExecutorService的使用">
+             <span id="/2017/06/11/CountDownLatch、ExecutorService的使用/" class="leancloud_visitors" data-flag-title="CountDownLatch、CyclicBarrier、ExecutorService的使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -421,14 +421,18 @@
       
 
       
-        <figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> <span class="type">CountDownLatch</span>(<span class="number">50</span>);</div><div class="line">        <span class="comment">//开启一个线程池</span></div><div class="line">        ExecutorService executor = Executors.<span class="keyword">new</span><span class="type">CachedThreadPool</span>();</div><div class="line">        <span class="comment">//执行TestThread里面的run方法</span></div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        <span class="comment">//线程池不再接受新的任务</span></div><div class="line">        executor.shutdown();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
+        <ul>
+<li>CountDownLatch代表的是当所有子线程都执行完成的时候再执行主线程，只要子线程还没有执行完成，主线程就处于一个等待状态。</li>
+<li>CyclicBarrier代表的是当所有子线程到达某一个地方的时候再一起执行，就好像大家一起去爬山，约好一个集合地点，然后大家有的走的快，有的走的慢，但是需要所有人都到达了才能一起继续出发。<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        CountDownLatch countDownLatch = <span class="keyword">new</span> <span class="type">CountDownLatch</span>(<span class="number">50</span>);</div><div class="line">        <span class="comment">//开启一个线程池</span></div><div class="line">        ExecutorService executor = Executors.<span class="keyword">new</span><span class="type">CachedThreadPool</span>();</div><div class="line">        <span class="comment">//执行TestThread里面的run方法</span></div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        executor.execute(<span class="keyword">new</span> <span class="type">TestThread</span>(countDownLatch));</div><div class="line">        <span class="comment">//线程池不再接受新的任务</span></div><div class="line">        executor.shutdown();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
 <li><code>executor.execute(new TestThread(countDownLatch));</code>这段传入的是一个实现<code>Runnable</code>接口的类，执行的方法则是<code>run</code>方法里面的内容，每一个<code>execute</code>则是开启一个线程</li>
-</ul>
+</ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</div><div class="line">    <span class="keyword">private</span>  CountDownLatch countDownLatch;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TestThread</span><span class="params">( CountDownLatch countDownLatch )</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.countDownLatch = countDownLatch;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">while</span> (countDownLatch.getCount() &gt;<span class="number">0</span>)&#123;</div><div class="line">            countDownLatch.countDown();</div><div class="line">            System.out.println(<span class="string">"输出："</span>+Thread.currentThread()+<span class="string">"&gt;&gt;&gt;"</span>+ countDownLatch.getCount());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
+<ol>
 <li><code>CountDownLatch countDownLatch = new CountDownLatch(50);</code>这段是启用一个线程辅助类，传入的参数是一个<code>int</code>类型的计数，在<code>TestThread</code>中的<code>run</code>方法中，每执行一次，通过调用<code>countDownLatch.countDown();</code>方法计数减一，当计数内容为<code>0</code>时，则子线程全部执行完成，此时主线程才能继续往下执行。</li>
-</ul>
+</ol>
 <h4 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h4><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">49</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">47</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">46</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">45</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">44</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">43</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">42</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">41</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">40</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-2</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">48</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">39</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-2</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">38</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-3</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">36</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-1</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">36</span></div><div class="line">输出：Thread[pool<span class="number">-1</span>-thread<span class="number">-3</span>,<span class="number">5</span>,main]&gt;&gt;&gt;<span class="number">34</span></div><div class="line">...</div></pre></td></tr></table></figure>
 <p>具体用法请google</p>
 
@@ -580,7 +584,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

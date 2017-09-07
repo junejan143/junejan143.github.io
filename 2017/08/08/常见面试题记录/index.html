@@ -126,7 +126,7 @@
 <meta property="og:url" content="http://www.520zhang.com/2017/08/08/常见面试题记录/index.html">
 <meta property="og:site_name" content="幻影">
 <meta property="og:description" content="Java 使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？这个可以用consistent hash（一致性hash）,具体算法原理Google Java现有的数据结构实现一个LRU缓存？使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客 实现一个基于内存的ip黑/白名单具体实现？使用布隆过滤器 一个主线程下有">
-<meta property="og:updated_time" content="2017-08-08T14:57:41.000Z">
+<meta property="og:updated_time" content="2017-09-07T12:55:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见面试题记录">
 <meta name="twitter:description" content="Java 使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？这个可以用consistent hash（一致性hash）,具体算法原理Google Java现有的数据结构实现一个LRU缓存？使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客 实现一个基于内存的ip黑/白名单具体实现？使用布隆过滤器 一个主线程下有">
@@ -404,14 +404,28 @@
 <li><code>Java现有的数据结构实现一个LRU缓存？</code><br>使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客</li>
 <li><code>实现一个基于内存的ip黑/白名单具体实现？</code><br>使用布隆过滤器</li>
 <li><code>一个主线程下有多个子线程任务，主线程必须在100秒内将子线程执行的集合结果进行处理返回？</code><br>这个可以使用线程池的辅助类CountDownLatch，在wait的时候设置等待时间</li>
-<li><p><code>1G日志文件解析？</code></p>
+<li><code>1G日志文件解析？</code><br>awk命令？</li>
+<li><code>分布式系统，两个系统之间，数据交互的方式有哪些？哪种比较好？安全？</code></li>
+<li><code>一个不知道多少层级的文件夹，文件夹下面有txt文件以及子文件夹，给定一个目录如何求出所有文件中出现频率最多的前10个单词</code></li>
+<li><code>spring IOC的原理，实现步骤，如何自己设计一套？</code></li>
+<li><p><code>注解的实现，元注解有哪些？</code><br>@Target:说明了Annotation所修饰的对象范围<br>@Inherited：元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。<br>@Retention  </p>
+<blockquote>
+<p>1.SOURCE:在源文件中有效（即源文件保留）<br>2.CLASS:在class文件中有效（即class保留）<br>3.RUNTIME:在运行时有效（即运行时保留</p>
+</blockquote>
 </li>
-<li><p><code>分布式系统，两个系统之间，数据交互的方式有哪些？哪种比较好？安全？</code></p>
+<li><p><code>你是如何获取方法中的方法参数名字的？</code></p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">package org.springframework.core;</div><div class="line"><span class="comment">//获取方法的参数名列表</span></div><div class="line">ParameterNameDiscoverer paramNameDiscover = <span class="keyword">new</span> LocalVariableTableParameterNameDiscoverer();</div><div class="line">String[] paramNames = paramNameDiscover.getParameterNames(<span class="function"><span class="keyword">method</span>);</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ol>
 <li><code>Junit或者testng有哪些高级用法？</code></li>
 <li><code>如何测一个登录功能？</code></li>
+<li><code>Junit的原理，执行过程，是否看过源码？</code></li>
+<li><code>selenium如果运行过程中新打开一个页面需要注意什么？</code></li>
+<li><code>awk命令的$代表什么意思，如何打印出某行某列</code></li>
+<li><code>如何处理测试过程中的数据？比如说每次的post接口都会往数据库插入数据，如何在测试运行后处理数据？</code></li>
+<li><code>如何设计一套类似于postman的接口测试网站，说出你的思路？</code></li>
+<li><code>selenium的显示等待和隐式等待的区别？</code></li>
 </ol>
 
       
@@ -486,6 +500,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/08/10/深入理解Java虚拟机笔记/" rel="prev" title="深入理解Java虚拟机笔记">
+                深入理解Java虚拟机笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -558,7 +576,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

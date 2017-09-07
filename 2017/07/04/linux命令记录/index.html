@@ -126,10 +126,12 @@
 <meta property="og:url" content="http://www.520zhang.com/2017/07/04/linux命令记录/index.html">
 <meta property="og:site_name" content="幻影">
 <meta property="og:description" content="echo 命令 echo -e 处理特殊字符\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符； i.e12345 ~ echo -e &quot;z\bychen&quot;ychen ~ echo -e &quot;z\nychen&quot;zychen  echo -n">
-<meta property="og:updated_time" content="2017-07-05T14:28:11.000Z">
+<meta property="og:image" content="http://www.520zhang.com/images/awk.png">
+<meta property="og:updated_time" content="2017-09-07T12:17:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux命令记录">
 <meta name="twitter:description" content="echo 命令 echo -e 处理特殊字符\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符； i.e12345 ~ echo -e &quot;z\bychen&quot;ychen ~ echo -e &quot;z\nychen&quot;zychen  echo -n">
+<meta name="twitter:image" content="http://www.520zhang.com/images/awk.png">
 
 
 
@@ -407,6 +409,12 @@
 </li>
 </ul>
 <h3 id="shell传参数"><a href="#shell传参数" class="headerlink" title="shell传参数"></a>shell传参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"><span class="comment"># 是传给脚本的参数个数</span></span></div><div class="line"><span class="meta">$</span><span class="bash">0 是脚本本身的名字</span></div><div class="line"><span class="meta">$</span><span class="bash">1 是传递给该shell脚本的第一个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">2 是传递给该shell脚本的第二个参数</span></div><div class="line"><span class="meta">$</span><span class="bash">@ 是传给脚本的所有参数的列表</span></div><div class="line"><span class="meta">$</span><span class="bash">* 是以一个单字符串显示所有向脚本传递的参数，与位置变量不同，参数可超过9个</span></div><div class="line"><span class="meta">$</span><span class="bash">$ 是脚本运行的当前进程ID号</span></div><div class="line"><span class="meta">$</span><span class="bash">? 是显示最后命令的退出状态，0表示没有错误，其他表示有错误</span></div></pre></td></tr></table></figure>
+<h3 id="awk的应用"><a href="#awk的应用" class="headerlink" title="awk的应用"></a>awk的应用</h3><ul>
+<li>awk的内置变量<br>NR:代表的是行记录数<br>NF:代表的是每列记录数<br>FS:分隔符,等价于-F,默认是空格，如果想是用冒号分隔   <code>awk -F : &#39;print $1&#39; marks.txt</code><br><img src="/images/awk.png" alt="实际操作"></li>
+<li>打印5行3列的内容<br><code>awk &#39;{if(NR==5) print $1}&#39; marks.txt</code></li>
+<li>求出第四列的所有数据之和<br><code>awk &#39;{sum+=$4};END {print sum}&#39; marks.txt</code></li>
+</ul>
+
       
     </div>
 
@@ -555,7 +563,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -632,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-命令"><span class="nav-number">1.</span> <span class="nav-text">echo 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#echo-e-处理特殊字符"><span class="nav-number">1.1.</span> <span class="nav-text">echo -e 处理特殊字符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#i-e"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.e</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echo-n-不换行输出"><span class="nav-number">1.2.</span> <span class="nav-text">echo -n 不换行输出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#i-e-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.e</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell传参数"><span class="nav-number">2.</span> <span class="nav-text">shell传参数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#echo-命令"><span class="nav-number">1.</span> <span class="nav-text">echo 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#echo-e-处理特殊字符"><span class="nav-number">1.1.</span> <span class="nav-text">echo -e 处理特殊字符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#i-e"><span class="nav-number">1.1.1.</span> <span class="nav-text">i.e</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echo-n-不换行输出"><span class="nav-number">1.2.</span> <span class="nav-text">echo -n 不换行输出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#i-e-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">i.e</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell传参数"><span class="nav-number">2.</span> <span class="nav-text">shell传参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk的应用"><span class="nav-number">3.</span> <span class="nav-text">awk的应用</span></a></li></ol></div>
             
 
           </div>
