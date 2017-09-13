@@ -126,7 +126,7 @@
 <meta property="og:url" content="http://www.520zhang.com/2017/08/08/常见面试题记录/index.html">
 <meta property="og:site_name" content="幻影">
 <meta property="og:description" content="Java 使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？这个可以用consistent hash（一致性hash）,具体算法原理Google Java现有的数据结构实现一个LRU缓存？使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客 实现一个基于内存的ip黑/白名单具体实现？使用布隆过滤器 一个主线程下有">
-<meta property="og:updated_time" content="2017-09-07T12:55:43.000Z">
+<meta property="og:updated_time" content="2017-09-13T15:31:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见面试题记录">
 <meta name="twitter:description" content="Java 使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？这个可以用consistent hash（一致性hash）,具体算法原理Google Java现有的数据结构实现一个LRU缓存？使用LinkedHashMap集合，基于里面的一个removeEldestEntry方法，具体见我的另一遍博客 实现一个基于内存的ip黑/白名单具体实现？使用布隆过滤器 一个主线程下有">
@@ -416,8 +416,23 @@
 <li><p><code>你是如何获取方法中的方法参数名字的？</code></p>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">package org.springframework.core;</div><div class="line"><span class="comment">//获取方法的参数名列表</span></div><div class="line">ParameterNameDiscoverer paramNameDiscover = <span class="keyword">new</span> LocalVariableTableParameterNameDiscoverer();</div><div class="line">String[] paramNames = paramNameDiscover.getParameterNames(<span class="function"><span class="keyword">method</span>);</span></div></pre></td></tr></table></figure>
 </li>
-</ol>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ol>
+<li><p><code>—颗21个节点10层的2义树，第7层最多有多少个结点？简单写出分析过程。</code></p>
+</li>
+<li><code>在应用服务器上运行APP时’如果出现了 ClassCastException，可能引发该问题的原因有哪些，如何来判断和解决问题呢？</code></li>
+<li><code>有一个程序能够接收很多网络请求，同时把这些网络请求中携带的信息记录下来。如果是记录至文件，那么瓶径可能是哪些，如何设计来提高性能， 其中的关键点是？相应的解决方案又有哪些副作用呢？</code></li>
+<li><code>任意选择一个你熟悉的JAVA框架（如Spring，IBatis，Struts等都可以) 讲述其中你觉得设计优秀的地方，井简要地说明原因</code></li>
+<li><code>写一个转账（从账户A到账户B的转账一笔资金）的伪代码，需要考虑事务。如何解决死锁的问题？如何解决热点账户的问题？</code></li>
+<li><code>什么情况下，会出现ConcurrentModificationException这个异常,如何避免</code></li>
+<li><code>有一个程序能够接收很多网络请求，同时把这些网络请求中携带的信息记录下来，如果是记录至数据库，那么瓶径可能是哪些，如何设计数据库，来提高性能，其中的关键点是？相应的解决方案又有哪些副作用呢？</code></li>
+<li><code>请用图来简单描述任何一个J2EE或者WEB服务器的类加载机制。</code></li>
+<li><code>写一个转账（从账户A到账户B的转账一笔资金）的伪代码，需要考虑事务。如何解决死锁的问题？如何解决热点账户的问题？</code></li>
+<li><p><code>判断如下代码片段在具体的业务场景下都有哪些潜在问题</code></p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> *  &lt;pre&gt;</div><div class="line"> *  金额分的转化 例如10000 会转化为 100.00</div><div class="line"> *  &lt;code&gt;</div><div class="line"> *  CentAmountFieldValueConverter.convert("10000") = 100.00</div><div class="line"> *  &lt;/code&gt;</div><div class="line"> * &lt;/pre&gt;</div><div class="line"> * <span class="doctag">@author</span> lv.yanl</div><div class="line"> * <span class="doctag">@version</span> $Id: CentAmountFieldValueConverter.java, v 0.1 2009-12-10 $</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CentAmountFieldValueConverter</span> <span class="keyword">implements</span> <span class="title">FieldValueConverter</span> </span>&#123;</div><div class="line">    <span class="comment">/** </span></div><div class="line">     * <span class="doctag">@see</span> com.alipay.finance.filefactory.core.parse.configparse.converter.FieldValueConverter#convert(com.alipay.finance.filefactory.core.parse.model.Field)</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> void convert(Field field) &#123;</div><div class="line">        String value = (String) field.getDestValue();</div><div class="line">        <span class="keyword">if</span> (StringUtils.isBlank(value)) &#123;</div><div class="line">            <span class="keyword">return</span>;        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">long</span> cent = <span class="keyword">Long</span>.parseLong(value);</div><div class="line">            Money amount = <span class="keyword">new</span> Money(cent);</div><div class="line">            amount.setCent(cent);</div><div class="line">            field.setDestValue(amount.toString());</div><div class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> e) &#123;</div><div class="line">            field.setDestValue(value);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>实现一个单例类</code></p>
+</li>
+<li><code>实现一段小用户登录验证小逻辑</code><br>1）需要考虑登录安全与用户信息安全<br>2）用户信息是维护在文件中<br>3）若需要支持10000+同时在线登录，依然将用户信息维护在文件中，如何实现</li>
+<li><code>实现一个集群模式下系统生成唯一流水号的算法，要求(1)流水号不能重复、(2)不能生成一次访问一次数据库</code><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3></li>
 <li><code>Junit或者testng有哪些高级用法？</code></li>
 <li><code>如何测一个登录功能？</code></li>
 <li><code>Junit的原理，执行过程，是否看过源码？</code></li>
@@ -426,6 +441,8 @@
 <li><code>如何处理测试过程中的数据？比如说每次的post接口都会往数据库插入数据，如何在测试运行后处理数据？</code></li>
 <li><code>如何设计一套类似于postman的接口测试网站，说出你的思路？</code></li>
 <li><code>selenium的显示等待和隐式等待的区别？</code></li>
+<li><code>如何设计一套测试平台，可以持续集成</code></li>
+<li><code>针对于dubbo服务如何测试</code></li>
 </ol>
 
       
@@ -576,7 +593,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

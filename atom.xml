@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-08-10T14:49:45.000Z</updated>
+  <updated>2017-09-11T15:50:34.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>接口签名进行key排序,并MD5加密</title>
+    <link href="http://www.520zhang.com/2017/09/11/%E6%8E%A5%E5%8F%A3%E7%AD%BE%E5%90%8D%E8%BF%9B%E8%A1%8Ckey%E6%8E%92%E5%BA%8F-%E5%B9%B6MD5%E5%8A%A0%E5%AF%86/"/>
+    <id>http://www.520zhang.com/2017/09/11/接口签名进行key排序-并MD5加密/</id>
+    <published>2017-09-11T15:08:13.000Z</published>
+    <updated>2017-09-11T15:50:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> leetcode.tokenSort;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.commons.codec.digest.DigestUtils;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="keyword">import</span> java.util.TreeMap;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * @Author: 章源辰</div><div class="line"> * @Date: 2017/9/11</div><div class="line"> * @Description:</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> class MD5Utils &#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> getDigest(TreeMap&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; <span class="built_in">map</span>, <span class="keyword">String</span> <span class="built_in">key</span>, <span class="keyword">String</span> charset)&#123;</div><div class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">        <span class="keyword">for</span> (Map.Entry entry : <span class="built_in">map</span>.entrySet()) &#123;</div><div class="line">            sb = sb.<span class="built_in">append</span>(entry.getKey()).<span class="built_in">append</span>(<span class="string">"="</span>).<span class="built_in">append</span>(entry.getValue()).<span class="built_in">append</span>(<span class="string">"&amp;"</span>);</div><div class="line">        &#125;</div><div class="line">        sb.<span class="built_in">append</span>(<span class="string">"key"</span>).<span class="built_in">append</span>(<span class="string">"="</span>).<span class="built_in">append</span>(<span class="built_in">key</span>);</div><div class="line">        System.out.<span class="built_in">println</span>(<span class="string">"拼接后的字符："</span>+sb.toString());</div><div class="line">        <span class="keyword">String</span> sign = DigestUtils.md5Hex(getContentBytes(sb.toString(), charset));</div><div class="line">        System.out.<span class="built_in">println</span>(<span class="string">"加密后的签名："</span>+sign);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">byte</span>[] getContentBytes(<span class="keyword">String</span> content, <span class="keyword">String</span> charset) &#123;</div><div class="line">        <span class="keyword">if</span> (charset == <span class="keyword">null</span> || <span class="string">""</span>.equals(charset)) &#123;</div><div class="line">            <span class="keyword">return</span> content.getBytes();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">return</span> content.getBytes(charset);</div><div class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"MD5签名过程中出现错误,指定的编码集不对,您目前指定的编码集是:"</span> + charset);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</div><div class="line">        <span class="comment">//treeMap默认是key升序排序 ,如果需要降序,可以使用Comparator中的compare方法</span></div><div class="line">        TreeMap&lt;<span class="keyword">String</span>,<span class="keyword">String</span>&gt; <span class="built_in">map</span> = <span class="keyword">new</span> TreeMap&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt;();</div><div class="line">        <span class="built_in">map</span>.put(<span class="string">"name"</span>, <span class="string">"zychen"</span>);</div><div class="line">        <span class="built_in">map</span>.put(<span class="string">"password"</span>, <span class="string">"123456"</span>);</div><div class="line">        <span class="built_in">map</span>.put(<span class="string">"project"</span>, <span class="string">"base"</span>);</div><div class="line">        <span class="built_in">map</span>.put(<span class="string">"tenantId"</span>, <span class="string">"192319387131"</span>);</div><div class="line">        getDigest(<span class="built_in">map</span>, <span class="string">"helloWorld"</span>,<span class="string">"utf-8"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简单叙说jwt加密原理以及这样加密方式的优缺点？</p>
+<p>原理：JWT由三部分组成：header.payload.signature，每部分是一个Json表示。最终的Token对这三部分进行编码之后的字符串，中间用“.”分割。header用来描述token的类型（jwt）以及使用的hash算法，payload包含一些摘要信息，signature签名由前面的Header、Payload以及秘钥组成。当访问登录页的时候，登录服务验证之后，签发证书返回给客户端。客户端保存证书，并在每次请求时将其附在request header中。服务器接收请求之后，通过签名和时戳，验证Token的有效性。若有效，则响应客户端。</p>
+<p>优点：无状态，不需要在 session中存储用户信息，不用担心跨域问题，只需在用户验证成功后，获取一个JWT token，服务端验证签名即可，比 cookie 更支持原生移动端应用，验证解耦，无需使用特定的身份验证方案，token可以在任何地方生成<br>缺点：<br>1.请求地址中的token容易被盗取，难以保证token本身的安全<br>2.HTTP 头中自定义属性但是局限性太大，XMLHttpRequest 请求通常用于Ajax方法中对于页面局部的异步刷新，通过该类请求得到的页面不能被浏览器所记录下，从而进行前进，后退，刷新，收藏等操作，给用户带来不便</p>
+<p>摘要认证：<br>采用对参数和响应进行摘要的方法，每次请求和响应，按照一定的规则生成数字摘要，客户端和服务端双方需要约定好参数的排序方式，请求的参数经过排序后，再将参数名名称和值经过一定的策略组织起来，加上一个秘钥secret，就是‘盐’通过约定的摘要算法生成数字摘要，传递给服务端。服务端在接收到客户端传递的参数后，服务端会采取和客户端相同的策略对参数进行排序，并且加上相同的secret，采用相同的摘要算法生成摘要串，由于相同内容经过相同的摘要算法，生成的摘要内容必定相同。将服务端生成的摘要串与客户端生成的摘要串进行比较，这样就能知道参数内容是否被篡改。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight processing&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>深入理解Java虚拟机笔记</title>
@@ -49,7 +72,7 @@
     <link href="http://www.520zhang.com/2017/08/08/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>http://www.520zhang.com/2017/08/08/常见面试题记录/</id>
     <published>2017-08-08T14:45:21.000Z</published>
-    <updated>2017-09-07T12:55:43.000Z</updated>
+    <updated>2017-09-13T15:31:10.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><ol>
 <li><code>使用对ID取模的方法做数据库的水平拆分，如果需要增加一个数据库，需要怎么处理？</code><br>这个可以用consistent hash（一致性hash）,具体算法原理Google</li>
@@ -68,8 +91,23 @@
 <li><p><code>你是如何获取方法中的方法参数名字的？</code></p>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">package org.springframework.core;</div><div class="line"><span class="comment">//获取方法的参数名列表</span></div><div class="line">ParameterNameDiscoverer paramNameDiscover = <span class="keyword">new</span> LocalVariableTableParameterNameDiscoverer();</div><div class="line">String[] paramNames = paramNameDiscover.getParameterNames(<span class="function"><span class="keyword">method</span>);</span></div></pre></td></tr></table></figure>
 </li>
-</ol>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ol>
+<li><p><code>—颗21个节点10层的2义树，第7层最多有多少个结点？简单写出分析过程。</code></p>
+</li>
+<li><code>在应用服务器上运行APP时’如果出现了 ClassCastException，可能引发该问题的原因有哪些，如何来判断和解决问题呢？</code></li>
+<li><code>有一个程序能够接收很多网络请求，同时把这些网络请求中携带的信息记录下来。如果是记录至文件，那么瓶径可能是哪些，如何设计来提高性能， 其中的关键点是？相应的解决方案又有哪些副作用呢？</code></li>
+<li><code>任意选择一个你熟悉的JAVA框架（如Spring，IBatis，Struts等都可以) 讲述其中你觉得设计优秀的地方，井简要地说明原因</code></li>
+<li><code>写一个转账（从账户A到账户B的转账一笔资金）的伪代码，需要考虑事务。如何解决死锁的问题？如何解决热点账户的问题？</code></li>
+<li><code>什么情况下，会出现ConcurrentModificationException这个异常,如何避免</code></li>
+<li><code>有一个程序能够接收很多网络请求，同时把这些网络请求中携带的信息记录下来，如果是记录至数据库，那么瓶径可能是哪些，如何设计数据库，来提高性能，其中的关键点是？相应的解决方案又有哪些副作用呢？</code></li>
+<li><code>请用图来简单描述任何一个J2EE或者WEB服务器的类加载机制。</code></li>
+<li><code>写一个转账（从账户A到账户B的转账一笔资金）的伪代码，需要考虑事务。如何解决死锁的问题？如何解决热点账户的问题？</code></li>
+<li><p><code>判断如下代码片段在具体的业务场景下都有哪些潜在问题</code></p>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> *  &lt;pre&gt;</div><div class="line"> *  金额分的转化 例如10000 会转化为 100.00</div><div class="line"> *  &lt;code&gt;</div><div class="line"> *  CentAmountFieldValueConverter.convert("10000") = 100.00</div><div class="line"> *  &lt;/code&gt;</div><div class="line"> * &lt;/pre&gt;</div><div class="line"> * <span class="doctag">@author</span> lv.yanl</div><div class="line"> * <span class="doctag">@version</span> $Id: CentAmountFieldValueConverter.java, v 0.1 2009-12-10 $</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CentAmountFieldValueConverter</span> <span class="keyword">implements</span> <span class="title">FieldValueConverter</span> </span>&#123;</div><div class="line">    <span class="comment">/** </span></div><div class="line">     * <span class="doctag">@see</span> com.alipay.finance.filefactory.core.parse.configparse.converter.FieldValueConverter#convert(com.alipay.finance.filefactory.core.parse.model.Field)</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> void convert(Field field) &#123;</div><div class="line">        String value = (String) field.getDestValue();</div><div class="line">        <span class="keyword">if</span> (StringUtils.isBlank(value)) &#123;</div><div class="line">            <span class="keyword">return</span>;        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">long</span> cent = <span class="keyword">Long</span>.parseLong(value);</div><div class="line">            Money amount = <span class="keyword">new</span> Money(cent);</div><div class="line">            amount.setCent(cent);</div><div class="line">            field.setDestValue(amount.toString());</div><div class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> e) &#123;</div><div class="line">            field.setDestValue(value);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>实现一个单例类</code></p>
+</li>
+<li><code>实现一段小用户登录验证小逻辑</code><br>1）需要考虑登录安全与用户信息安全<br>2）用户信息是维护在文件中<br>3）若需要支持10000+同时在线登录，依然将用户信息维护在文件中，如何实现</li>
+<li><code>实现一个集群模式下系统生成唯一流水号的算法，要求(1)流水号不能重复、(2)不能生成一次访问一次数据库</code><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3></li>
 <li><code>Junit或者testng有哪些高级用法？</code></li>
 <li><code>如何测一个登录功能？</code></li>
 <li><code>Junit的原理，执行过程，是否看过源码？</code></li>
@@ -78,6 +116,8 @@
 <li><code>如何处理测试过程中的数据？比如说每次的post接口都会往数据库插入数据，如何在测试运行后处理数据？</code></li>
 <li><code>如何设计一套类似于postman的接口测试网站，说出你的思路？</code></li>
 <li><code>selenium的显示等待和隐式等待的区别？</code></li>
+<li><code>如何设计一套测试平台，可以持续集成</code></li>
+<li><code>针对于dubbo服务如何测试</code></li>
 </ol>
 ]]></content>
     
