@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.520zhang.com/"/>
-  <updated>2017-09-11T15:50:34.000Z</updated>
+  <updated>2017-09-23T11:42:30.000Z</updated>
   <id>http://www.520zhang.com/</id>
   
   <author>
@@ -14,6 +14,94 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis入门简单教程</title>
+    <link href="http://www.520zhang.com/2017/09/23/redis%E5%85%A5%E9%97%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/"/>
+    <id>http://www.520zhang.com/2017/09/23/redis入门简单教程/</id>
+    <published>2017-09-23T11:19:21.000Z</published>
+    <updated>2017-09-23T11:42:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Redis的安装（Mac-Os）"><a href="#Redis的安装（Mac-Os）" class="headerlink" title="Redis的安装（Mac Os）"></a>Redis的安装（Mac Os）</h3><ol>
+<li>去redis的官网www.redis.io的下载最新的稳定版本</li>
+<li><p>下载下来的压缩包解压  </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">tar</span> <span class="selector-tag">-zxvf</span> <span class="selector-tag">redis-4</span><span class="selector-class">.0</span><span class="selector-class">.2</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>进入redis目录</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">cd</span> <span class="selector-tag">redis-4</span><span class="selector-class">.0</span><span class="selector-class">.2</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>编译</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">make</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make <span class="built_in">test</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make install PREFIX=<span class="regexp">/Usrs/g</span>emini<span class="regexp">/tools/</span>redis</div><div class="line"><span class="regexp">//</span>PREFIX安装指定目录</div></pre></td></tr></table></figure>
+</li>
+<li><p>将原先解压目录下面的<code>redis.conf</code>文件拷贝到安装目录<code>/Usrs/gemini/tools/redis</code>下面</p>
+</li>
+<li><p>启动服务端</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~<span class="regexp">/tools/</span>redis &gt; .<span class="regexp">/bin/</span>redis-server  redis.conf</div></pre></td></tr></table></figure>
+</li>
+<li><p>启动客户端</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~<span class="regexp">/tools/</span>redis &gt; .<span class="regexp">/bin/</span>redis-cli</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Redis的通用命令"><a href="#Redis的通用命令" class="headerlink" title="Redis的通用命令"></a>Redis的通用命令</h3><ul>
+<li><p>设置一个值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">set</span> <span class="selector-tag">site</span> <span class="selector-tag">www</span><span class="selector-class">.520zhang</span><span class="selector-class">.com</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>查询某个key</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="builtin-name">get</span> site</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询当前库下所有的key</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">keys</span> * <span class="comment"> //这个后面是任意的正则表达式</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>重命名这个key</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">rename</span> site <span class="keyword">test</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>如果重命名后的key值已存在则不进行重命名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">renamenx site <span class="built_in">test</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>删除某个key</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">del</span> site</div></pre></td></tr></table></figure>
+</li>
+<li><p>切换库查询</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="number">1</span>  </div><div class="line"><span class="comment">//默认情况下总共有16个库，默认操作是库为0的，可以通过修改redis.conf文件修改库的个数</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>拷贝某个key到其他的库</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cope site <span class="number">1</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>设置key的生命周期，默认情况下key的生命周期为永久,单位为妙</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expire site <span class="number">10</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>查询某个key的生命周期，key存在的情况下若生命周期为永久返回-1，有指定值的时候，返回还剩余多长时间，key不存在则返回-2</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">ttl site</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>设置key的生命周期精确到毫秒</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pexpire site <span class="number">9000</span> <span class="comment">//设置key为site的生命周期9000毫秒</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>查询生命周期，和pexpire结合使用</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">pttl site</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>设置某个key的生命周期为永久</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">persist site</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Redis的安装（Mac-Os）&quot;&gt;&lt;a href=&quot;#Redis的安装（Mac-Os）&quot; class=&quot;headerlink&quot; title=&quot;Redis的安装（Mac Os）&quot;&gt;&lt;/a&gt;Redis的安装（Mac Os）&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;去redis的官
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="http://www.520zhang.com/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>接口签名进行key排序,并MD5加密</title>
@@ -195,9 +283,9 @@
       <category term="自动化测试" scheme="http://www.520zhang.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
     
     
-      <category term="selenide" scheme="http://www.520zhang.com/tags/selenide/"/>
-    
       <category term="selenium" scheme="http://www.520zhang.com/tags/selenium/"/>
+    
+      <category term="selenide" scheme="http://www.520zhang.com/tags/selenide/"/>
     
       <category term="https" scheme="http://www.520zhang.com/tags/https/"/>
     

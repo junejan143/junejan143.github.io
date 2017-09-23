@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[redis入门简单教程]]></title>
+    <url>%2F2017%2F09%2F23%2Fredis%E5%85%A5%E9%97%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[Redis的安装（Mac Os） 去redis的官网www.redis.io的下载最新的稳定版本 下载下来的压缩包解压 1tar -zxvf redis-4.0.2.tar.gz 进入redis目录 1cd redis-4.0.2 编译 1make 测试 1make test 安装 12$ make install PREFIX=/Usrs/gemini/tools/redis//PREFIX安装指定目录 将原先解压目录下面的redis.conf文件拷贝到安装目录/Usrs/gemini/tools/redis下面 启动服务端 1~/tools/redis &gt; ./bin/redis-server redis.conf 启动客户端 1~/tools/redis &gt; ./bin/redis-cli Redis的通用命令 设置一个值 1set site www.520zhang.com 查询某个key 1get site 查询当前库下所有的key 1keys * //这个后面是任意的正则表达式 重命名这个key 1rename site test 如果重命名后的key值已存在则不进行重命名 1renamenx site test 删除某个key 1del site 切换库查询 12select 1 //默认情况下总共有16个库，默认操作是库为0的，可以通过修改redis.conf文件修改库的个数 拷贝某个key到其他的库 1cope site 1 设置key的生命周期，默认情况下key的生命周期为永久,单位为妙 1expire site 10 查询某个key的生命周期，key存在的情况下若生命周期为永久返回-1，有指定值的时候，返回还剩余多长时间，key不存在则返回-2 1ttl site 设置key的生命周期精确到毫秒 1pexpire site 9000 //设置key为site的生命周期9000毫秒 查询生命周期，和pexpire结合使用 1pttl site 设置某个key的生命周期为永久 1persist site]]></content>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[接口签名进行key排序,并MD5加密]]></title>
     <url>%2F2017%2F09%2F11%2F%E6%8E%A5%E5%8F%A3%E7%AD%BE%E5%90%8D%E8%BF%9B%E8%A1%8Ckey%E6%8E%92%E5%BA%8F-%E5%B9%B6MD5%E5%8A%A0%E5%AF%86%2F</url>
     <content type="text"><![CDATA[123456789101112131415161718192021222324252627282930313233343536373839404142434445464748package leetcode.tokenSort;import org.apache.commons.codec.digest.DigestUtils;import java.io.UnsupportedEncodingException;import java.util.Map;import java.util.TreeMap;/** * @Author: 章源辰 * @Date: 2017/9/11 * @Description: */public class MD5Utils &#123; private static void getDigest(TreeMap&lt;String, String&gt; map, String key, String charset)&#123; StringBuilder sb = new StringBuilder(); for (Map.Entry entry : map.entrySet()) &#123; sb = sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&amp;"); &#125; sb.append("key").append("=").append(key); System.out.println("拼接后的字符："+sb.toString()); String sign = DigestUtils.md5Hex(getContentBytes(sb.toString(), charset)); System.out.println("加密后的签名："+sign); &#125; private static byte[] getContentBytes(String content, String charset) &#123; if (charset == null || "".equals(charset)) &#123; return content.getBytes(); &#125; try &#123; return content.getBytes(charset); &#125; catch (UnsupportedEncodingException e) &#123; throw new RuntimeException("MD5签名过程中出现错误,指定的编码集不对,您目前指定的编码集是:" + charset); &#125; &#125; public static void main(String[] args) &#123; //treeMap默认是key升序排序 ,如果需要降序,可以使用Comparator中的compare方法 TreeMap&lt;String,String&gt; map = new TreeMap&lt;String, String&gt;(); map.put("name", "zychen"); map.put("password", "123456"); map.put("project", "base"); map.put("tenantId", "192319387131"); getDigest(map, "helloWorld","utf-8"); &#125;&#125; 简单叙说jwt加密原理以及这样加密方式的优缺点？ 原理：JWT由三部分组成：header.payload.signature，每部分是一个Json表示。最终的Token对这三部分进行编码之后的字符串，中间用“.”分割。header用来描述token的类型（jwt）以及使用的hash算法，payload包含一些摘要信息，signature签名由前面的Header、Payload以及秘钥组成。当访问登录页的时候，登录服务验证之后，签发证书返回给客户端。客户端保存证书，并在每次请求时将其附在request header中。服务器接收请求之后，通过签名和时戳，验证Token的有效性。若有效，则响应客户端。 优点：无状态，不需要在 session中存储用户信息，不用担心跨域问题，只需在用户验证成功后，获取一个JWT token，服务端验证签名即可，比 cookie 更支持原生移动端应用，验证解耦，无需使用特定的身份验证方案，token可以在任何地方生成缺点：1.请求地址中的token容易被盗取，难以保证token本身的安全2.HTTP 头中自定义属性但是局限性太大，XMLHttpRequest 请求通常用于Ajax方法中对于页面局部的异步刷新，通过该类请求得到的页面不能被浏览器所记录下，从而进行前进，后退，刷新，收藏等操作，给用户带来不便 摘要认证：采用对参数和响应进行摘要的方法，每次请求和响应，按照一定的规则生成数字摘要，客户端和服务端双方需要约定好参数的排序方式，请求的参数经过排序后，再将参数名名称和值经过一定的策略组织起来，加上一个秘钥secret，就是‘盐’通过约定的摘要算法生成数字摘要，传递给服务端。服务端在接收到客户端传递的参数后，服务端会采取和客户端相同的策略对参数进行排序，并且加上相同的secret，采用相同的摘要算法生成摘要串，由于相同内容经过相同的摘要算法，生成的摘要内容必定相同。将服务端生成的摘要串与客户端生成的摘要串进行比较，这样就能知道参数内容是否被篡改。]]></content>
@@ -34,8 +42,8 @@
         <category>自动化测试</category>
       </categories>
       <tags>
-        <tag>selenide</tag>
         <tag>selenium</tag>
+        <tag>selenide</tag>
         <tag>https</tag>
         <tag>httpclient</tag>
         <tag>proxy</tag>

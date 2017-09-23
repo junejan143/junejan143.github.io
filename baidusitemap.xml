@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://www.520zhang.com/2017/09/23/redis%E5%85%A5%E9%97%A8%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2017-09-23T11:42:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>redis入门简单教程</title>
+        <pubTime>2017-09-23T11:19:21.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.520zhang.com/2017/08/08/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2017-09-13T15:34:54.000Z</lastmod>
     <data>
@@ -119,9 +136,9 @@
         <title>自动化测试中设置代理以及https的证书信任问题</title>
         <pubTime>2017-06-28T11:47:41.000Z</pubTime>
         
-        <tag>selenide</tag>
-         
         <tag>selenium</tag>
+         
+        <tag>selenide</tag>
          
         <tag>https</tag>
          
